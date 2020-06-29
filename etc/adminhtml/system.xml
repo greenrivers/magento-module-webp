@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Unexpected Team
+ * @copyright Copyright (c) 2020 Unexpected
+ * @package Unexpected_Webp
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="unexpected" translate="label" sortOrder="100000">
+            <label>Unexpected</label>
+        </tab>
+        <section id="webp" translate="label" sortOrder="20" showInDefault="1" showInWebsite="1"
+                 showInStore="1">
+            <class>separator-top</class>
+            <label>Webp</label>
+            <tab>unexpected</tab>
+            <resource>Unexpected_Webp::webp_config</resource>
+            <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0"
+                   showInStore="0">
+                <label>General Configuration</label>
+                <field id="enable" translate="label" type="checkbox" sortOrder="10" showInDefault="1" showInWebsite="1"
+                       showInStore="1">
+                    <label>Enable</label>
+                    <frontend_model>Unexpected\Webp\Block\Adminhtml\System\Config\ToggleSwitch</frontend_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>
