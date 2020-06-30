@@ -10,14 +10,12 @@ use Unexpected\Webp\Block\Adminhtml\System\Config\ProgressBar;
 /** @var ProgressBar $block */
 ?>
 
-<div id="progressbar"
-     data-mage-init='{
-            "progressbar": {
-                "div": "#progressbar",
-                "label": ".progress-label"
+<div id="progressBar" data-mage-init='{
+        "progressbar": {
+                "divProgressBar": "#progressbar",
+                "divProgress": "#progress"
             }
-       }'>
-    <div class="progress-label"></div>
+        }'>
+    <div id="progress">0%</div>
 </div>
-
 
