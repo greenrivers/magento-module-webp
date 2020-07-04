@@ -13,6 +13,7 @@ use Magento\Store\Model\ScopeInterface;
 class Config extends AbstractHelper
 {
     const XML_ENABLE_CONFIG_PATH = 'webp/general/enable';
+    const XML_TYPE_CONFIG_PATH = 'webp/backend/type';
 
     /**
      * @return bool
@@ -20,5 +21,13 @@ class Config extends AbstractHelper
     public function getEnableConfig(): bool
     {
         return $this->scopeConfig->getValue(self::XML_ENABLE_CONFIG_PATH, ScopeInterface::SCOPE_STORE);
+    }
+
+    /**
+     * @return string
+     */
+    public function getTypeConfig(): string
+    {
+        return $this->scopeConfig->getValue(self::XML_TYPE_CONFIG_PATH, ScopeInterface::SCOPE_STORE);
     }
 }

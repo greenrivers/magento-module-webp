@@ -20,7 +20,7 @@
             <resource>Unexpected_Webp::webp_config</resource>
             <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0"
                    showInStore="0">
-                <label>General Configuration</label>
+                <label>General</label>
                 <field id="enable" translate="label" type="checkbox" sortOrder="10" showInDefault="1" showInWebsite="1"
                        showInStore="1">
                     <label>Enable</label>
@@ -30,12 +30,17 @@
             <group id="backend" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="0"
                    showInStore="0">
                 <label>Backend</label>
-                <field id="convert" translate="label" type="button" sortOrder="10" showInDefault="1" showInWebsite="1"
+                <field id="type" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1"
+                       showInStore="1">
+                    <label>Convertion type</label>
+                    <source_model>Unexpected\Webp\Model\Config\Source\Type</source_model>
+                </field>
+                <field id="convert" translate="label" type="button" sortOrder="20" showInDefault="1" showInWebsite="1"
                        showInStore="1">
                     <label>Convert to Webp</label>
                     <frontend_model>Unexpected\Webp\Block\Adminhtml\System\Config\Button</frontend_model>
                 </field>
-                <field id="progressbar" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1"
+                <field id="progressbar" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1"
                        showInStore="1">
                     <label>Progress</label>
                     <frontend_model>Unexpected\Webp\Block\Adminhtml\System\Config\ProgressBar</frontend_model>
