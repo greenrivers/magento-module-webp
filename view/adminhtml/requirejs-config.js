@@ -7,7 +7,8 @@
 const config = {
     map: {
         '*': {
-            progressbar: 'Unexpected_Webp/js/system/config/progressbar'
+            progressbar: 'Unexpected_Webp/js/system/config/progressbar',
+            sliderRange: 'Unexpected_Webp/js/system/config/slider-range'
         }
     }
 };

@@ -1,0 +1,23 @@
+<?php
+/**
+ * @author Unexpected Team
+ * @copyright Copyright (c) 2020 Unexpected
+ * @package Unexpected_Webp
+ */
+
+use Unexpected\Webp\Block\Adminhtml\System\Config\SliderRange;
+
+/** @var SliderRange $block */
+?>
+
+<div data-mage-init='{
+        "sliderRange": {
+                "divSliderRange": "#progressbar",
+                "divValue": "#progress"
+            }
+        }'>
+    <span id="value"></span>
+    <div id="slider-range-max"></div>
+    <input type="hidden" name="groups[advanced][fields][quality][value]" value="75"/>
+</div>
+

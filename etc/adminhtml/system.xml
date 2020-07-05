@@ -30,20 +30,36 @@
             <group id="backend" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="0"
                    showInStore="0">
                 <label>Backend</label>
-                <field id="type" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1"
+                <field id="extension" translate="label" type="multiselect" sortOrder="10" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Extension</label>
+                    <source_model>Unexpected\Webp\Model\Config\Source\Extension</source_model>
+                    <can_be_empty>0</can_be_empty>
+                </field>
+                <field id="type" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1"
                        showInStore="1">
                     <label>Convertion type</label>
                     <source_model>Unexpected\Webp\Model\Config\Source\Type</source_model>
                 </field>
-                <field id="convert" translate="label" type="button" sortOrder="20" showInDefault="1" showInWebsite="1"
+                <field id="convert" translate="label" type="button" sortOrder="30" showInDefault="1" showInWebsite="1"
                        showInStore="1">
                     <label>Convert to Webp</label>
                     <frontend_model>Unexpected\Webp\Block\Adminhtml\System\Config\Button</frontend_model>
                 </field>
-                <field id="progressbar" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1"
+                <field id="progressbar" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1"
                        showInStore="1">
                     <label>Progress</label>
                     <frontend_model>Unexpected\Webp\Block\Adminhtml\System\Config\ProgressBar</frontend_model>
+                </field>
+            </group>
+            <group id="advanced" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="0"
+                   showInStore="0">
+                <label>Advanced</label>
+                <field id="quality" translate="label" type="checkbox" sortOrder="10" showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Quality</label>
+                    <frontend_model>Unexpected\Webp\Block\Adminhtml\System\Config\SliderRange</frontend_model>
                 </field>
             </group>
         </section>

@@ -9,11 +9,11 @@ namespace Unexpected\Webp\Model\Config\Source;
 
 use Magento\Framework\Data\OptionSourceInterface;
 
-class Type implements OptionSourceInterface
+class Extension implements OptionSourceInterface
 {
-    const WEBP_TYPE = 'webp';
-    const CWEBP_TYPE = 'cwebp';
-    const VIPS_TYPE = 'vips';
+    const JPG_EXTENSION = '*.jpg';
+    const JPEG_EXTENSION = '*.jpeg';
+    const PNG_EXTENSION = '*.png';
 
     /**
      * @inheritDoc
@@ -36,9 +36,9 @@ class Type implements OptionSourceInterface
     private function toArray(): array
     {
         return [
-            self::WEBP_TYPE => __('Webp'),
-            self::CWEBP_TYPE => __('Cwebp'),
-            self::VIPS_TYPE => __('Vips'),
+            self::JPG_EXTENSION => __('jpg'),
+            self::JPEG_EXTENSION => __('jpeg'),
+            self::PNG_EXTENSION => __('png'),
         ];
     }
 }
