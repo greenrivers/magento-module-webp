@@ -11,19 +11,18 @@ define([
     'use strict';
 
     return config => {
-        // const {divProgressBar, divProgress} = config;
-        // const progressBar = $(divProgressBar);
-        // const progress = $(divProgress);
-
-        $("#slider-range-max").slider({
-            range: "max",
-            min: 0,
-            max: 100,
-            value: 75,
+        const handle = $("#slider-handle");
+        $("#slider").slider({
+            create: function () {
+                const value = $(this).slider('value');
+                handle.text(value);
+                $('#webp_advanced_quality').val(value);
+            },
             slide: function (event, ui) {
-                $("#value").html(ui.value);
+                const {value} = ui;
+                handle.text(value);
+                $('#webp_advanced_quality').val(value);
             }
         });
-        $("#value").html($("#slider-range-max").slider("value"));
     }
 });

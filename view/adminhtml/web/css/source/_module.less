@@ -1,3 +1,5 @@
+/* Toggle switch */
+
 .switch {
   position: relative;
   display: inline-block;
@@ -115,16 +117,35 @@ input:checked + .sliderOne:before {
   margin: 0 0 0 15px;
 }
 
+/* Progressbar */
+
 #progressBar {
   width: 100%;
   background-color: #ddd;
 }
 
 #progress {
-  width: 0%;
+  width: 0;
   height: 30px;
   background-color: #79a22e;
   text-align: center;
   line-height: 30px;
+  color: white;
+}
+
+/* Slider range */
+
+#slider {
+  background: #ccc;
+}
+
+#slider-handle {
+  width: 3em;
+  height: 1.6em;
+  top: 50%;
+  margin-top: -.8em;
+  text-align: center;
+  line-height: 1.6em;
+  background: #79a22e;
   color: white;
 }

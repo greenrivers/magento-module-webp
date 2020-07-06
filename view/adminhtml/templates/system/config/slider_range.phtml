@@ -10,14 +10,12 @@ use Unexpected\Webp\Block\Adminhtml\System\Config\SliderRange;
 /** @var SliderRange $block */
 ?>
 
-<div data-mage-init='{
+<div id="slider" data-mage-init='{
         "sliderRange": {
-                "divSliderRange": "#progressbar",
-                "divValue": "#progress"
             }
         }'>
-    <span id="value"></span>
-    <div id="slider-range-max"></div>
-    <input type="hidden" name="groups[advanced][fields][quality][value]" value="75"/>
+    <div id="slider-handle" class="ui-slider-handle"></div>
 </div>
+
+<input id="webp_advanced_quality" type="hidden" name="groups[advanced][fields][quality][value]" value="75"/>
 
