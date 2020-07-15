@@ -85,7 +85,7 @@ class Convert extends Action
             ->in($mediaPath)
             ->name($this->config->getExtensionConfig());
 
-        $i = 0;
+//        $i = 0;
 
         foreach ($images as $image) {
             $imagePath = $image->getPathname();
@@ -100,10 +100,10 @@ class Convert extends Action
 
             $this->converter->convert($imagePath, $webpPath);
 
-            $i++;
-            if ($i === 100) {
-                break;
-            }
+//            $i++;
+//            if ($i === 100) {
+//                break;
+//            }
         }
 
         $result->setData(['output' => $mediaPath]);

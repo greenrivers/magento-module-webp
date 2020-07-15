@@ -27,39 +27,27 @@
                     <frontend_model>Unexpected\Webp\Block\Adminhtml\System\Config\ToggleSwitch</frontend_model>
                 </field>
             </group>
-            <group id="backend" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="0"
+            <group id="settings" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="0"
                    showInStore="0">
-                <label>Backend</label>
-                <field id="extension" translate="label" type="multiselect" sortOrder="10" showInDefault="1"
+                <label>Settings</label>
+                <field id="algorithm" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1"
+                       showInStore="1">
+                    <label>Algorithm</label>
+                    <source_model>Unexpected\Webp\Model\Config\Source\Algorithm</source_model>
+                </field>
+                <field id="quality" translate="label" type="checkbox" sortOrder="20" showInDefault="1"
                        showInWebsite="1" showInStore="1">
-                    <label>Extension</label>
-                    <source_model>Unexpected\Webp\Model\Config\Source\Extension</source_model>
-                    <can_be_empty>0</can_be_empty>
-                </field>
-                <field id="type" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1"
-                       showInStore="1">
-                    <label>Convertion type</label>
-                    <source_model>Unexpected\Webp\Model\Config\Source\Type</source_model>
-                </field>
-                <field id="convert" translate="label" type="button" sortOrder="30" showInDefault="1" showInWebsite="1"
-                       showInStore="1">
-                    <label>Convert to Webp</label>
-                    <frontend_model>Unexpected\Webp\Block\Adminhtml\System\Config\Button</frontend_model>
-                </field>
-                <field id="progressbar" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1"
-                       showInStore="1">
-                    <label>Progress</label>
-                    <frontend_model>Unexpected\Webp\Block\Adminhtml\System\Config\ProgressBar</frontend_model>
-                </field>
-            </group>
-            <group id="advanced" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="0"
-                   showInStore="0">
-                <label>Advanced</label>
-                <field id="quality" translate="label" type="checkbox" sortOrder="10" showInDefault="1"
-                       showInWebsite="1"
-                       showInStore="1">
                     <label>Quality</label>
                     <frontend_model>Unexpected\Webp\Block\Adminhtml\System\Config\SliderRange</frontend_model>
+                </field>
+            </group>
+            <group id="conversion" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="0"
+                   showInStore="0">
+                <label>Conversion</label>
+                <field id="convert_upload" translate="label" type="checkbox" sortOrder="10" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Convert image after upload</label>
+                    <frontend_model>Unexpected\Webp\Block\Adminhtml\System\Config\ToggleSwitch</frontend_model>
                 </field>
             </group>
         </section>

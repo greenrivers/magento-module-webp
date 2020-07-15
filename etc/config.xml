@@ -13,6 +13,9 @@
             <general>
                 <enable>1</enable>
             </general>
+            <conversion>
+                <convert_upload>0</convert_upload>
+            </conversion>
         </webp>
     </default>
 </config>

@@ -9,11 +9,11 @@ namespace Unexpected\Webp\Model\Config\Source;
 
 use Magento\Framework\Data\OptionSourceInterface;
 
-class Type implements OptionSourceInterface
+class Algorithm implements OptionSourceInterface
 {
-    const WEBP_TYPE = 'webp';
-    const CWEBP_TYPE = 'cwebp';
-    const VIPS_TYPE = 'vips';
+    const WEBP_ALGORITHM = 'webp';
+    const CWEBP_ALGORITHM = 'cwebp';
+    const VIPS_ALGORITHM = 'vips';
 
     /**
      * @inheritDoc
@@ -36,9 +36,9 @@ class Type implements OptionSourceInterface
     private function toArray(): array
     {
         return [
-            self::WEBP_TYPE => __('Webp'),
-            self::CWEBP_TYPE => __('Cwebp'),
-            self::VIPS_TYPE => __('Vips'),
+            self::WEBP_ALGORITHM => __('Webp'),
+            self::CWEBP_ALGORITHM => __('Cwebp'),
+            self::VIPS_ALGORITHM => __('Vips'),
         ];
     }
 }

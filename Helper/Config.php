@@ -13,10 +13,11 @@ use Magento\Store\Model\ScopeInterface;
 class Config extends AbstractHelper
 {
     const XML_ENABLE_CONFIG_PATH = 'webp/general/enable';
-    const XML_EXTENSION_CONFIG_PATH = 'webp/backend/extension';
-    const XML_TYPE_CONFIG_PATH = 'webp/backend/type';
 
-    const XML_QUALITY_CONFIG_PATH = 'webp/advanced/quality';
+    const XML_ALGORITHM_CONFIG_PATH = 'webp/settings/algorithm';
+    const XML_QUALITY_CONFIG_PATH = 'webp/settings/quality';
+
+    const XML_CONVERT_UPLOAD_CONFIG_PATH = 'webp/conversion/convert_upload';
 
     /**
      * @return bool
@@ -29,18 +30,10 @@ class Config extends AbstractHelper
     /**
      * @return array
      */
-    public function getExtensionConfig(): array
+    public function getAlgorithmConfig(): array
     {
-        $extensions = $this->scopeConfig->getValue(self::XML_EXTENSION_CONFIG_PATH, ScopeInterface::SCOPE_STORE);
-        return explode(',', $extensions);
-    }
-
-    /**
-     * @return string
-     */
-    public function getTypeConfig(): string
-    {
-        return $this->scopeConfig->getValue(self::XML_TYPE_CONFIG_PATH, ScopeInterface::SCOPE_STORE);
+        $algorithms = $this->scopeConfig->getValue(self::XML_ALGORITHM_CONFIG_PATH, ScopeInterface::SCOPE_STORE);
+        return explode(',', $algorithms);
     }
 
     /**
@@ -49,5 +42,13 @@ class Config extends AbstractHelper
     public function getQualityConfig(): int
     {
         return $this->scopeConfig->getValue(self::XML_QUALITY_CONFIG_PATH, ScopeInterface::SCOPE_STORE);
+    }
+
+    /**
+     * @return bool
+     */
+    public function getConvertUploadConfig(): bool
+    {
+        return $this->scopeConfig->getValue(self::XML_CONVERT_UPLOAD_CONFIG_PATH, ScopeInterface::SCOPE_STORE);
     }
 }

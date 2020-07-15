@@ -38,14 +38,9 @@ define([
 
             this.isChecked.subscribe(function (value) {
                 this.text(value ? 'Yes' : 'No');
-                this.toggleElements(value);
             }, this);
 
             return this;
-        },
-
-        toggleElements: function () {
-            // $('.section-config:not(:first)').toggle();
         },
 
         /**

@@ -8,11 +8,12 @@
 use Unexpected\Webp\Block\Adminhtml\System\Config\ToggleSwitch;
 
 /** @var ToggleSwitch $block */
+$component = $block->getComponent();
 ?>
 
-<div id="switcher" data-bind="scope: 'toggleSwitch-scope'">
+<div id="<?= /* @noEscape */ $component['id'] ?>" data-bind="scope: '<?= /* @noEscape */ $component['id'] ?>-scope'">
     <label class="switch">
-        <input type="hidden" name="groups[general][fields][enable][value]"
+        <input type="hidden" name="<?= /* @noEscape */ $component['name'] ?>"
                data-bind="value: getValue()"/>
         <input type="checkbox" data-bind="checked: isChecked">
         <span data-bind="css: { sliderOne: isChecked, slider: !isChecked() }" class="round" id="spa"></span>
@@ -22,12 +23,12 @@ use Unexpected\Webp\Block\Adminhtml\System\Config\ToggleSwitch;
 
 <script type="text/x-magento-init">
 {
-  "#switcher": {
+  "#<?= /* @noEscape */ $component['id'] ?>": {
         "Magento_Ui/js/core/app": {
-        "components": {
-          "toggleSwitch-scope": {
-            "component": "Unexpected_Webp/js/system/config/toggle-switch",
-            "isChecked": <?= json_encode($block->getValue()) ?>
+        "components":{
+          "<?= /* @noEscape */ $component['id'] ?>-scope":{
+            "component":"Unexpected_Webp/js/system/config/<?= /* @noEscape */ $component['id'] ?>",
+            "isChecked": <?= /* @noEscape */ json_encode($component['value']) ?>
           }
         }
       }

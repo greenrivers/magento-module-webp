@@ -45,13 +45,14 @@ class Converter
     {
         $image = imagecreatefromstring(file_get_contents($imagePath));
         ob_start();
-        imagewebp($image, $webpPath, 75);
+        imagewebp($image, $webpPath, $this->config->getQualityConfig());
         $image = ob_get_clean();
     }
 
     private function convertCwebp(string $imagePath, string $webpPath)
     {
-        $process = Process::fromShellCommandline("cwebp ${imagePath} -m 0 -q 75 -o ${webpPath}");
+        $quality = $this->config->getQualityConfig();
+        $process = Process::fromShellCommandline("cwebp ${imagePath} -m 0 -q ${quality} -o ${webpPath}");
         $process->run();
         if (!$process->isSuccessful()) {
             throw new ProcessFailedException($process);
@@ -62,6 +63,6 @@ class Converter
     private function convertVips(string $imagePath, string $webpPath)
     {
         $image = Image::newFromBuffer(file_get_contents($imagePath));
-        $image->writeToFile($webpPath, ['Q' => 75]);
+        $image->writeToFile($webpPath, ['Q' => $this->config->getQualityConfig()]);
     }
 }
