@@ -8,14 +8,33 @@
 use Unexpected\Webp\Block\Adminhtml\System\Config\SliderRange;
 
 /** @var SliderRange $block */
+$value = $block->getValue();
 ?>
 
-<div id="slider" data-mage-init='{
-        "sliderRange": {
-            }
-        }'>
-    <div id="slider-handle" class="ui-slider-handle"></div>
+<div id="webp-settings-quality" data-bind="scope: 'webp-settings-quality'">
+    <div id="slider">
+        <div id="slider-handle" class="ui-slider-handle"></div>
+    </div>
+
+    <input id="webp_settings_quality" type="hidden" name="groups[settings][fields][quality][value]"
+           data-bind="value: getValue()">
 </div>
 
-<input id="webp_advanced_quality" type="hidden" name="groups[advanced][fields][quality][value]" value="75"/>
 
+<script type="text/x-magento-init">
+{
+    "#webp-settings-quality": {
+        "Magento_Ui/js/core/app": {
+            "components": {
+                "webp-settings-quality-scope": {
+                    "component": "Unexpected_Webp/js/system/config/webp-settings-quality",
+                    "sliderId": "slider",
+                    "sliderHandleId": "slider-handle",
+                    "inputId": "webp_settings_quality",
+                    "value": <?= /* @noEscape */ json_encode($value) ?>
+                }
+            }
+        }
+    }
+}
+</script>

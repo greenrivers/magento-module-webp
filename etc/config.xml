@@ -13,6 +13,10 @@
             <general>
                 <enable>1</enable>
             </general>
+            <settings>
+                <algorithm>webp</algorithm>
+                <quality>75</quality>
+            </settings>
             <conversion>
                 <convert_upload>0</convert_upload>
             </conversion>
