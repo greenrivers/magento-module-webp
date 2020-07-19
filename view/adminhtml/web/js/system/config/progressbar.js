@@ -17,7 +17,7 @@ define([
 
         $('#convert').on('click', () => {
             $.post(
-                location.origin + '/admin/webp/webp/convert',
+                location.origin + '/admin/unexpected_webp/webp/convert',
                 {
                     form_key: window.FORM_KEY
                 }

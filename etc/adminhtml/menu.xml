@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Unexpected Team
+ * @copyright Copyright (c) 2020 Unexpected
+ * @package Unexpected_Webp
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Unexpected_Webp::webp"
+             title="Unexpected Webp"
+             module="Magento_Backend"
+             sortOrder="30"
+             parent="Magento_Backend::content"
+             resource="Unexpected_Webp::webp"/>
+
+        <add id="Unexpected_Webp::convert"
+             title="Conversion"
+             module="Unexpected_Webp"
+             sortOrder="10"
+             parent="Unexpected_Webp::webp"
+             action="unexpected_webp/convert"
+             resource="Unexpected_Webp::convert"/>
+    </menu>
+</config>

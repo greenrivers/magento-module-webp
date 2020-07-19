@@ -9,7 +9,7 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:framework:App/etc/routes.xsd">
     <router id="admin">
-        <route id="webp" frontName="webp">
+        <route id="unexpected_webp" frontName="unexpected_webp">
             <module name="Unexpected_Webp"/>
         </route>
     </router>

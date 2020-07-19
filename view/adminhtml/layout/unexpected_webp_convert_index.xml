@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Unexpected Team
+ * @copyright Copyright (c) 2020 Unexpected
+ * @package Unexpected_Webp
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd"
+      layout="admin-2columns-left">
+    <body>
+        <referenceContainer name="left">
+            <block class="Magento\Framework\View\Element\Template" name="webp_catalog.tree"
+                   template="Unexpected_Webp::conversion/tree.phtml"/>
+        </referenceContainer>
+        <referenceContainer name="content">
+            <!--            <uiComponent name="webp_form"/>-->
+        </referenceContainer>
+    </body>
+</page>
