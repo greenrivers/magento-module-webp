@@ -11,11 +11,11 @@
       layout="admin-2columns-left">
     <body>
         <referenceContainer name="left">
-            <block class="Magento\Framework\View\Element\Template" name="webp_catalog.tree"
+            <block class="Unexpected\Webp\Block\Adminhtml\Conversion\Tree" name="webp_catalog.tree"
                    template="Unexpected_Webp::conversion/tree.phtml"/>
         </referenceContainer>
         <referenceContainer name="content">
-            <!--            <uiComponent name="webp_form"/>-->
+            <uiComponent name="webp_form"/>
         </referenceContainer>
     </body>
 </page>

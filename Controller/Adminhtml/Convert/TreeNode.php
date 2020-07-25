@@ -15,6 +15,9 @@ use Magento\Framework\Filesystem\Driver\File;
 
 class TreeNode extends Action
 {
+    const ROOT_ID = 'root';
+    const UNEXPECTED_DIR = 'unexpected';
+
     /** @var JsonFactory */
     private $jsonResultFactory;
 
@@ -48,7 +51,7 @@ class TreeNode extends Action
 
         $path = $this->directoryList->getPath(DirectoryList::MEDIA);
 
-        if ($nodeId !== 'root') {
+        if ($nodeId !== self::ROOT_ID) {
             $path .= '/' . $nodeId;
         }
 
@@ -56,8 +59,8 @@ class TreeNode extends Action
         $directories = [];
 
         foreach ($paths as $path) {
-            if ($this->driverFile->isDirectory($path)) {
-                $dirName = substr(strrchr($path, '/'), 1);
+            $dirName = substr(strrchr($path, '/'), 1);
+            if ($this->driverFile->isDirectory($path) && $dirName !== self::UNEXPECTED_DIR) {
                 $dirId = substr($path, strpos($path, DirectoryList::MEDIA . '/') + 6);
 
                 $directories[] = [
