@@ -1,0 +1,17 @@
+<?php
+
+use Unexpected\Webp\Block\Adminhtml\Conversion\Time;
+
+/** @var Time $block */
+
+?>
+
+<div class="admin__field-label" data-bind="visible: $data.labelVisible">
+    <!-- ko if: $data.label --><label data-bind="attr: {for: uid}" for="V3DXHPM">
+        <span data-bind="attr: {'data-config-scope': $data.scopeLabel}, i18n: label">Time</span>
+    </label><!-- /ko -->
+</div>
+<div class="admin__field-control"
+     data-bind="css: {'_with-tooltip': $data.tooltip, '_with-reset': $data.showFallbackReset &amp;&amp; $data.isDifferedFromDefault}">
+    <?= $block->renderTimeElement() ?>
+</div>

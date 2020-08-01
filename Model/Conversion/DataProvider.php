@@ -17,7 +17,7 @@ class DataProvider extends \Magento\Framework\View\Element\UiComponent\DataProvi
         return [
             '' => [
                 'document_set_id_3' => 'test3',
-                'myCheckbox_test' => false
+                'myCheckbox_test' => true
             ],
         ];
     }
@@ -26,7 +26,7 @@ class DataProvider extends \Magento\Framework\View\Element\UiComponent\DataProvi
     {
         $meta = parent::getMeta();
 
-        $meta['cron']['arguments']['data']['config']['visible'] = 0;
+//        $meta['cron']['arguments']['data']['config']['visible'] = 0;
         return $meta;
     }
 }

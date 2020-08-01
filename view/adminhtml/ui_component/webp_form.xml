@@ -13,41 +13,93 @@
         </item>
         <item name="template" xsi:type="string">templates/form/collapsible</item>
     </argument>
+    <settings>
+        <buttons>
+            <button name="convert_now" class="Unexpected\Webp\Block\Adminhtml\Conversion\ConvertNowButton"/>
+            <button name="cron" class="Unexpected\Webp\Block\Adminhtml\Conversion\CronButton"/>
+            <button name="save" class="Unexpected\Webp\Block\Adminhtml\Conversion\SaveButton"/>
+        </buttons>
+        <namespace>webp_form</namespace>
+        <dataScope>data</dataScope>
+        <deps>
+            <dep>webp_form.webp_form_data_source</dep>
+        </deps>
+    </settings>
     <dataSource name="webp_form_data_source">
-        <argument name="dataProvider" xsi:type="configurableObject">
-            <argument name="class" xsi:type="string">Unexpected\Webp\Model\Conversion\DataProvider</argument>
-            <argument name="name" xsi:type="string">webp_form_data_source</argument>
-            <argument name="primaryFieldName" xsi:type="string">id</argument>
-            <argument name="requestFieldName" xsi:type="string">id</argument>
-        </argument>
         <argument name="data" xsi:type="array">
             <item name="js_config" xsi:type="array">
                 <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
             </item>
         </argument>
+        <!--        <settings>-->
+        <!--            <validateUrl path="catalog/category/validate"/>-->
+        <!--            <submitUrl path="catalog/category/save"/>-->
+        <!--        </settings>-->
+        <dataProvider class="Unexpected\Webp\Model\Conversion\DataProvider" name="webp_form_data_source">
+            <settings>
+                <requestFieldName>id</requestFieldName>
+                <primaryFieldName>entity_id</primaryFieldName>
+            </settings>
+        </dataProvider>
     </dataSource>
-    <fieldset name="webp_details">
+    <fieldset name="convert" sortOrder="10">
         <settings>
-            <collapsible>false</collapsible>
-            <label/>
+            <collapsible>true</collapsible>
+            <label translate="true">Conversion</label>
         </settings>
-        <!--        <argument name="data" xsi:type="array">-->
-        <!--            <item name="config" xsi:type="array">-->
-        <!--                <item name="collapsible" xsi:type="boolean">true</item>-->
-        <!--                <item name="label" xsi:type="string" translate="true">General</item>-->
-        <!--                <item name="sortOrder" xsi:type="number">20</item>-->
-        <!--            </item>-->
-        <!--        </argument>-->
-        <field name="myCheckbox" formElement="checkbox">
+        <field name="convert" template="ui/form/field">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
-                    <item name="source" xsi:type="string">myCheckbox</item>
-                    <item name="dataScope" xsi:type="string">myCheckbox_test</item>
-                    <!--                    <item name="default" xsi:type="number">1</item>-->
+                    <item name="sortOrder" xsi:type="number">10</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="component" xsi:type="string">Unexpected_Webp/js/form/element/progressbar</item>
+                    <item name="elementTmpl" xsi:type="string">Unexpected_Webp/form/element/progressbar</item>
+                    <item name="label" xsi:type="string" translate="true">Convert</item>
+                </item>
+            </argument>
+        </field>
+        <field name="convert_extensions" formElement="multiselect">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Extensions</label>
+                <dataScope>convert_extensions</dataScope>
+            </settings>
+            <formElements>
+                <multiselect>
+                    <settings>
+                        <options>
+                            <option name="1" xsi:type="array">
+                                <item name="value" xsi:type="string">1</item>
+                                <item name="label" xsi:type="string">JPG</item>
+                            </option>
+                            <option name="2" xsi:type="array">
+                                <item name="value" xsi:type="string">2</item>
+                                <item name="label" xsi:type="string">JPEG</item>
+                            </option>
+                            <option name="3" xsi:type="array">
+                                <item name="value" xsi:type="string">3</item>
+                                <item name="label" xsi:type="string">PNG</item>
+                            </option>
+                        </options>
+                    </settings>
+                </multiselect>
+            </formElements>
+        </field>
+    </fieldset>
+    <fieldset name="cron" sortOrder="20">
+        <settings>
+            <collapsible>true</collapsible>
+            <label translate="true">Cron</label>
+        </settings>
+        <field name="cron" formElement="checkbox">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">cron</item>
+                    <item name="dataScope" xsi:type="string">cron</item>
                 </item>
             </argument>
             <settings>
-                <label translate="true">Mode</label>
+                <label translate="true">Enable</label>
             </settings>
             <formElements>
                 <checkbox>
@@ -61,34 +113,85 @@
                 </checkbox>
             </formElements>
         </field>
-        <field name="document_set_id">
-            <argument name="data" xsi:type="array">
-                <item name="config" xsi:type="array">
-                    <item name="dataType" xsi:type="string">text</item>
-                    <item name="label" xsi:type="string" translate="true">Employee Id</item>
-                    <item name="formElement" xsi:type="string">input</item>
-                    <item name="source" xsi:type="string">document_set_id_2</item>
-                    <item name="dataScope" xsi:type="string">document_set_id_3</item>
-                </item>
-            </argument>
+        <field name="frequency" formElement="select">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Frequency</label>
+                <dataScope>frequency</dataScope>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options>
+                            <option name="1" xsi:type="array">
+                                <item name="value" xsi:type="string">1</item>
+                                <item name="label" xsi:type="string">Daily</item>
+                            </option>
+                            <option name="2" xsi:type="array">
+                                <item name="value" xsi:type="string">2</item>
+                                <item name="label" xsi:type="string">Weekly</item>
+                            </option>
+                            <option name="3" xsi:type="array">
+                                <item name="value" xsi:type="string">3</item>
+                                <item name="label" xsi:type="string">Monthly</item>
+                            </option>
+                        </options>
+                        <caption translate="true">-- Please Select --</caption>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+        <htmlContent name="time">
+            <settings>
+                <additionalClasses>
+                    <class name="admin__field">true</class>
+                </additionalClasses>
+            </settings>
+            <block class="Unexpected\Webp\Block\Adminhtml\Conversion\Time" name="time"/>
+        </htmlContent>
+        <field name="cron_extensions" formElement="multiselect">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Extensions</label>
+                <dataScope>cron_extensions</dataScope>
+            </settings>
+            <formElements>
+                <multiselect>
+                    <settings>
+                        <options>
+                            <option name="1" xsi:type="array">
+                                <item name="value" xsi:type="string">1</item>
+                                <item name="label" xsi:type="string">JPG</item>
+                            </option>
+                            <option name="2" xsi:type="array">
+                                <item name="value" xsi:type="string">2</item>
+                                <item name="label" xsi:type="string">JPEG</item>
+                            </option>
+                            <option name="3" xsi:type="array">
+                                <item name="value" xsi:type="string">3</item>
+                                <item name="label" xsi:type="string">PNG</item>
+                            </option>
+                        </options>
+                    </settings>
+                </multiselect>
+            </formElements>
         </field>
     </fieldset>
-    <fieldset name="general" sortOrder="5">
-        <settings>
-            <collapsible>true</collapsible>
-            <label translate="true">Conversion</label>
-        </settings>
-    </fieldset>
-    <fieldset name="cron" sortOrder="5">
-        <settings>
-            <collapsible>true</collapsible>
-            <label translate="true">Cron</label>
-        </settings>
-    </fieldset>
-    <fieldset name="clear" sortOrder="5">
+    <fieldset name="clear" sortOrder="30">
         <settings>
             <collapsible>true</collapsible>
             <label translate="true">Clear</label>
         </settings>
+        <field name="clear" template="ui/form/field">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="sortOrder" xsi:type="number">10</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="component" xsi:type="string">Unexpected_Webp/js/form/element/progressbar</item>
+                    <item name="elementTmpl" xsi:type="string">Unexpected_Webp/form/element/progressbar</item>
+                    <item name="label" xsi:type="string" translate="true">Clear</item>
+                </item>
+            </argument>
+        </field>
     </fieldset>
 </form>
