@@ -1,10 +1,10 @@
 <?php
 
-namespace Unexpected\Webp\Block\Adminhtml\Conversion;
+namespace Unexpected\Webp\Block\Adminhtml\Conversion\Buttons;
 
 use Magento\Framework\View\Element\UiComponent\Control\ButtonProviderInterface;
 
-class SaveButton implements ButtonProviderInterface
+class SaveButton extends GenericButton implements ButtonProviderInterface
 {
     /**
      * @inheritDoc

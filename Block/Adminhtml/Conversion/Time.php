@@ -30,8 +30,16 @@ class Time extends Template
     /**
      * @return string
      */
-    public function renderTimeElement(): string
+    public function getTimeElementHtml(): string
     {
         return $this->timeElement->getElementHtml();
+    }
+
+    /**
+     * @return string
+     */
+    public function getTimeElementName(): string
+    {
+        return $this->timeElement->getName();
     }
 }

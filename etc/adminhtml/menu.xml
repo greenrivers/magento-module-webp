@@ -21,7 +21,7 @@
              module="Unexpected_Webp"
              sortOrder="10"
              parent="Unexpected_Webp::webp"
-             action="unexpected_webp/convert"
+             action="unexpected_webp/conversion"
              resource="Unexpected_Webp::convert"/>
     </menu>
 </config>

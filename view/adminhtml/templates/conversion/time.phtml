@@ -3,15 +3,48 @@
 use Unexpected\Webp\Block\Adminhtml\Conversion\Time;
 
 /** @var Time $block */
-
+$elementHtml = $block->getTimeElementHtml();
+$elementName = $block->getTimeElementName();
 ?>
 
-<div class="admin__field-label" data-bind="visible: $data.labelVisible">
-    <!-- ko if: $data.label --><label data-bind="attr: {for: uid}" for="V3DXHPM">
-        <span data-bind="attr: {'data-config-scope': $data.scopeLabel}, i18n: label">Time</span>
-    </label><!-- /ko -->
+<div class="admin__field-label">
+    <label>
+        <span>
+            Time
+        </span>
+    </label>
 </div>
-<div class="admin__field-control"
-     data-bind="css: {'_with-tooltip': $data.tooltip, '_with-reset': $data.showFallbackReset &amp;&amp; $data.isDifferedFromDefault}">
-    <?= $block->renderTimeElement() ?>
+<div class="admin__field-control">
+    <?= $elementHtml ?>
 </div>
+
+<script>
+    require([
+        'jquery',
+        'domReady!'
+    ], function ($) {
+        $(function () {
+            const formName = 'time';
+            $(`select[name="${formName}"]`).on('change', function () {
+                let time = '';
+
+                $(`select[name="${formName}"]`).each(function (i, el) {
+                    const id = $(el).data('ui-id');
+                    const value = $(el).val();
+
+                    if (id === 'form-element-<?= $elementName ?>hour') {
+                        time = value;
+                    } else {
+                        time += `,${value}`;
+                    }
+                });
+
+                $('#time')
+                    .attr('data-form-part', 'webp_form')
+                    .prop('name', formName)
+                    .val(time);
+            });
+        });
+    });
+</script>
+

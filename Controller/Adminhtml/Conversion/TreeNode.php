@@ -5,7 +5,7 @@
  * @package Unexpected_Webp
  */
 
-namespace Unexpected\Webp\Controller\Adminhtml\Convert;
+namespace Unexpected\Webp\Controller\Adminhtml\Conversion;
 
 use Magento\Framework\App\Action\Action;
 use Magento\Framework\App\Action\Context;

@@ -14,7 +14,7 @@ use Unexpected\Webp\Helper\Config;
 
 class ToggleSwitch extends Field
 {
-    const WEBP_GENERAL_ENABLE = 'webp-general-enable';
+    const WEBP_GENERAL_ENABLED = 'webp-general-enabled';
     const WEBP_CONVERT_UPLOAD = 'webp-conversion-convert-upload';
 
     /** @var string */
@@ -49,8 +49,8 @@ class ToggleSwitch extends Field
         $component = ['id' => $id, 'name' => $name];
 
         switch ($id) {
-            case self::WEBP_GENERAL_ENABLE:
-                $component['value'] = $this->config->getEnableConfig();
+            case self::WEBP_GENERAL_ENABLED:
+                $component['value'] = $this->config->getEnabledConfig();
                 break;
             case self::WEBP_CONVERT_UPLOAD:
                 $component['value'] = $this->config->getConvertUploadConfig();

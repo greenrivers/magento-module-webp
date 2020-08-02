@@ -2,31 +2,92 @@
 
 namespace Unexpected\Webp\Model\Conversion;
 
-use Magento\Framework\View\Element\UiComponent\DataProvider\DataProviderInterface;
-use Magento\Ui\DataProvider\AbstractDataProvider;
+use Magento\Framework\Api\FilterBuilder;
+use Magento\Framework\Api\Search\ReportingInterface;
+use Magento\Framework\Api\Search\SearchCriteriaBuilder;
+use Magento\Framework\App\RequestInterface;
+use Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider as BaseDataProvider;
+use Unexpected\Webp\Helper\Config;
 
-class DataProvider extends \Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider
+class DataProvider extends BaseDataProvider
 {
-//    public function __construct($name, $primaryFieldName, $requestFieldName, array $meta = [], array $data = [])
-//    {
-//        parent::__construct($name, $primaryFieldName, $requestFieldName, $meta, $data);
-//    }
+    /** @var Config */
+    private $config;
 
+    /**
+     * DataProvider constructor.
+     * @param $name
+     * @param $primaryFieldName
+     * @param $requestFieldName
+     * @param ReportingInterface $reporting
+     * @param SearchCriteriaBuilder $searchCriteriaBuilder
+     * @param RequestInterface $request
+     * @param FilterBuilder $filterBuilder
+     * @param Config $config
+     * @param array $meta
+     * @param array $data
+     */
+    public function __construct(
+        $name,
+        $primaryFieldName,
+        $requestFieldName,
+        ReportingInterface $reporting,
+        SearchCriteriaBuilder $searchCriteriaBuilder,
+        RequestInterface $request,
+        FilterBuilder $filterBuilder,
+        Config $config,
+        array $meta = [],
+        array $data = []
+    ) {
+        parent::__construct(
+            $name,
+            $primaryFieldName,
+            $requestFieldName,
+            $reporting,
+            $searchCriteriaBuilder,
+            $request,
+            $filterBuilder,
+            $meta,
+            $data
+        );
+
+        $this->config = $config;
+    }
+
+    /**
+     * @inheritDoc
+     */
     public function getData()
     {
+        $data = [
+            'conversion_image_formats' => $this->config->getConversionImageFormatsConfig(),
+            'cron' => $this->config->getCronEnabledConfig(),
+            'frequency' => $this->config->getCronFrequencyConfig(),
+            'time' => $this->config->getCronTimeConfig(),
+            'cron_image_formats' => $this->config->getCronImageFormatsConfig()
+        ];
+
         return [
-            '' => [
-                'document_set_id_3' => 'test3',
-                'myCheckbox_test' => true
-            ],
+            '' => $data,
+            'convert_now' => $data,
+            'cron' => $data
         ];
     }
 
+    /**
+     * @inheritDoc
+     */
     public function getMeta()
     {
         $meta = parent::getMeta();
+        $id = $this->request->getParam('id');
 
-//        $meta['cron']['arguments']['data']['config']['visible'] = 0;
+        if ($id) {
+            $meta[$id]['arguments']['data']['config']['visible'] = true;
+        } else {
+            $meta['convert_now']['arguments']['data']['config']['visible'] = true;
+        }
+
         return $meta;
     }
 }
