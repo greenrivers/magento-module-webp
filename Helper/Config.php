@@ -21,8 +21,10 @@ class Config extends AbstractHelper
 
     const XML_CONVERT_UPLOAD_CONFIG_PATH = 'webp/conversion/convert_upload';
 
+    const XML_CONVERSION_FOLDERS_CONFIG_PATH = 'webp/conversion/folders';
     const XML_CONVERSION_IMAGE_FORMATS_CONFIG_PATH = 'webp/conversion/image_formats';
 
+    const XML_CRON_FOLDERS_CONFIG_PATH = 'webp/cron/folders';
     const XML_CRON_ENABLED_CONFIG_PATH = 'webp/cron/enabled';
     const XML_CRON_FREQUENCY_CONFIG_PATH = 'webp/cron/frequency';
     const XML_CRON_TIME_CONFIG_PATH = 'webp/cron/time';
@@ -79,10 +81,28 @@ class Config extends AbstractHelper
     /**
      * @return array
      */
+    public function getConversionFoldersConfig(): array
+    {
+        $folders = $this->scopeConfig->getValue(self::XML_CONVERSION_FOLDERS_CONFIG_PATH, ScopeInterface::SCOPE_STORE);
+        return explode(',', $folders);
+    }
+
+    /**
+     * @return array
+     */
     public function getConversionImageFormatsConfig(): array
     {
         $formats = $this->scopeConfig->getValue(self::XML_CONVERSION_IMAGE_FORMATS_CONFIG_PATH, ScopeInterface::SCOPE_STORE);
         return explode(',', $formats);
+    }
+
+    /**
+     * @return array
+     */
+    public function getCronFoldersConfig(): array
+    {
+        $folders = $this->scopeConfig->getValue(self::XML_CRON_FOLDERS_CONFIG_PATH, ScopeInterface::SCOPE_STORE);
+        return explode(',', $folders);
     }
 
     /**

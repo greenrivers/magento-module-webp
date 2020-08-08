@@ -66,7 +66,7 @@ class TreeNode extends Action
                 $directories[] = [
                     'text' => $dirName,
                     'id' => $dirId,
-                    'path' => 'some/path',
+                    'path' => $path,
                     'cls' => 'folder'
                 ];
             }

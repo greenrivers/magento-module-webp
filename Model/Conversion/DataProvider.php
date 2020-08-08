@@ -60,7 +60,9 @@ class DataProvider extends BaseDataProvider
     public function getData()
     {
         $data = [
+            'conversion_folders' => $this->config->getConversionFoldersConfig(),
             'conversion_image_formats' => $this->config->getConversionImageFormatsConfig(),
+            'cron_folders' => $this->config->getCronFoldersConfig(),
             'cron' => $this->config->getCronEnabledConfig(),
             'frequency' => $this->config->getCronFrequencyConfig(),
             'time' => $this->config->getCronTimeConfig(),

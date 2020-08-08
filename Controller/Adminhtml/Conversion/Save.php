@@ -14,6 +14,8 @@ use Unexpected\Webp\Helper\Config;
 
 class Save extends Action
 {
+    const CRON_PATH = 'cron';
+
     const CONFIG_CACHE = 'config';
     const FULL_PAGE_CACHE = 'full_page';
 
@@ -45,32 +47,41 @@ class Save extends Action
         $resultRedirect = $this->resultRedirectFactory->create();
         $request = $this->getRequest();
         $requestData = $request->getPost()->toArray();
+        $refererUrl = $this->_redirect->getRefererUrl();
 
-        $this->saveConfigValues($requestData);
+        $this->saveConfigValues($requestData, $refererUrl);
 
         $this->messageManager->addSuccessMessage(__('Config saved.'));
-        $resultRedirect->setPath('*/*/index');
+        $resultRedirect->setUrl($refererUrl);
         return $resultRedirect;
     }
 
     /**
      * @param array $requestData
+     * @param string $refererUrl
      */
-    private function saveConfigValues(array $requestData): void
+    private function saveConfigValues(array $requestData, string $refererUrl): void
     {
         [
+            'conversion_folders' => $conversionFolders,
             'conversion_image_formats' => $conversionImageFormats,
+            'cron_folders' => $cronFolders,
             'cron' => $cron,
             'frequency' => $frequency,
             'time' => $time,
             'cron_image_formats' => $cronImageFormats
         ] = $requestData;
 
-        $this->config->setValueConfig(Config::XML_CONVERSION_IMAGE_FORMATS_CONFIG_PATH, $conversionImageFormats);
-        $this->config->setValueConfig(Config::XML_CRON_ENABLED_CONFIG_PATH, $cron);
-        $this->config->setValueConfig(Config::XML_CRON_FREQUENCY_CONFIG_PATH, $frequency);
-        $this->config->setValueConfig(Config::XML_CRON_TIME_CONFIG_PATH, $time);
-        $this->config->setValueConfig(Config::XML_CRON_IMAGE_FORMATS_CONFIG_PATH, $cronImageFormats);
+        if (strpos($refererUrl, self::CRON_PATH) !== false) {
+            $this->config->setValueConfig(Config::XML_CRON_FOLDERS_CONFIG_PATH, $cronFolders);
+            $this->config->setValueConfig(Config::XML_CRON_ENABLED_CONFIG_PATH, $cron);
+            $this->config->setValueConfig(Config::XML_CRON_FREQUENCY_CONFIG_PATH, $frequency);
+            $this->config->setValueConfig(Config::XML_CRON_TIME_CONFIG_PATH, $time);
+            $this->config->setValueConfig(Config::XML_CRON_IMAGE_FORMATS_CONFIG_PATH, $cronImageFormats);
+        } else {
+            $this->config->setValueConfig(Config::XML_CONVERSION_FOLDERS_CONFIG_PATH, $conversionFolders);
+            $this->config->setValueConfig(Config::XML_CONVERSION_IMAGE_FORMATS_CONFIG_PATH, $conversionImageFormats);
+        }
 
         $this->cacheTypeList->invalidate([self::CONFIG_CACHE, self::FULL_PAGE_CACHE]);
     }

@@ -54,6 +54,15 @@
             <label translate="true">Conversion</label>
             <visible>false</visible>
         </settings>
+        <field name="conversion_folders">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">hidden</item>
+                    <item name="dataScope" xsi:type="string">conversion_folders</item>
+                </item>
+            </argument>
+        </field>
         <field name="convert" sortOrder="10" formElement="input" template="ui/form/field">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
@@ -97,6 +106,15 @@
             <label translate="true">Cron</label>
             <visible>false</visible>
         </settings>
+        <field name="cron_folders">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">hidden</item>
+                    <item name="dataScope" xsi:type="string">cron_folders</item>
+                </item>
+            </argument>
+        </field>
         <field name="cron" sortOrder="10" formElement="checkbox">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
