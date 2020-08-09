@@ -38,43 +38,57 @@ define([
             const {inst} = data;
             const {id} = data.rslt.obj.data().node;
             const {type} = event;
-            const escapeId = id.replaceAll('/', '\\/');
-            const parentId = inst._get_parent($('#' + escapeId))
-                .prop('id')
-            const escapeParentId = parentId.replaceAll('/', '\\/');
+
             const folders = registry.get(`index = ${index}`);
             let nodes = folders.value();
+
+            let escapeId = id.replaceAll('/', '\\/');
+            const parent = inst._get_parent($('#' + escapeId));
+            let parentId = parent !== -1 ? parent.prop('id') : 'root';
+            const escapeParentId = parentId.replaceAll('/', '\\/');
 
             if (type === 'check_node') {
                 let children = inst._get_children(`#${escapeParentId}`);
                 const isAll = children.toArray().every(child => inst.is_checked(child));
 
                 if (isAll) {
+                    children.toArray().forEach(el => {
+                        nodes = _.without(nodes, el.id);
+                    });
+                }
+
+                nodes.forEach(node => {
+                    const currentNode = node;
+                    const nodesSplit = node.split('/');
+
+                    if (nodesSplit.length > 1) {
+                        nodesSplit.forEach((node, i) => {
+                            if (i > 0) {
+                                const destNode = nodesSplit.slice(0, i + 1).join('/');
+
+                                if (nodesSplit[0] === id || destNode === id) {
+                                    nodes = _.without(nodes, currentNode);
+                                }
+                            }
+                        })
+                    }
+                });
+            } else {
+                nodes = _.without(nodes, parentId, id);
+                while (parentId !== 'root') {
+                    escapeId = parentId.replaceAll('/', '\\/');
+                    parentId = inst._get_parent($('#' + escapeId))
+                        .prop('id');
                     nodes = _.without(nodes, parentId);
                 }
-            } else {
-                nodes = _.without(nodes, id, parentId);
             }
 
             const ids = inst.get_checked()
                 .toArray()
                 .map(value => value.id);
 
-            ids.forEach(id => {
-                id = id.replaceAll('/', '\\/')
-                const children = inst._get_children(`#${id}`);
-                const isAll = children.toArray().every(child => inst.is_checked(child));
-                if (isAll && children.length) {
-                    children.each((i, el) => {
-                        nodes = _.without(nodes, $(el).prop('id'));
-                    });
-                }
-            });
-
-            nodes = _.union(nodes.concat(ids));
+            nodes = ids.includes('root') ? ['root'] : _.union(nodes.concat(ids));
             registry.get(`index = ${index}`).value(nodes);
-
-            console.log(registry.get(`index = ${index}`).value())
         });
 
     $(document).ajaxStop(() => {
