@@ -7,9 +7,10 @@
 define([
     'jquery',
     'ko',
+    'uiRegistry',
     'Magento_Ui/js/form/element/abstract',
     'domReady!'
-], function ($, ko, AbstractElement) {
+], function ($, ko, registry, AbstractElement) {
     'use strict';
 
     return AbstractElement.extend({
@@ -26,15 +27,39 @@ define([
         },
 
         onClick: function () {
-            // $.post(
-            //     location.origin + '/admin/unexpected_webp/webp/convert',
-            //     {
-            //         form_key: window.FORM_KEY
-            //     }
-            // ).done(function (data) {
-            //     console.log(data);
-            //     return true;
-            // });
+            const extensions = registry.get('index = conversion_image_formats');
+            let totalFiles = 0;
+            let convertedFiles = 0;
+
+            $.post(
+                location.origin + '/admin/unexpected_webp/webp/files',
+                {
+                    form_key: window.FORM_KEY,
+                    extensions: extensions.value()
+                }
+            ).done(function (data) {
+                totalFiles = data.files;
+
+                recursively_ajax();
+            });
+
+            function recursively_ajax() {
+                console.warn("begin");
+                $.post(
+                    location.origin + '/admin/unexpected_webp/webp/convert',
+                    {
+                        form_key: window.FORM_KEY,
+                        extensions: extensions.value(),
+                        converted_files: convertedFiles
+                    }
+                ).done(function (data) {
+                    convertedFiles = data.converted_files;
+                    console.log(convertedFiles);
+                    if (convertedFiles < totalFiles) {
+                        setTimeout(recursively_ajax, 300);
+                    }
+                });
+            }
 
             const percentage = this.value();
 

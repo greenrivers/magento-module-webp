@@ -11,12 +11,15 @@ use Magento\Backend\App\Action\Context;
 use Magento\Framework\App\Action\Action;
 use Magento\Framework\App\Filesystem\DirectoryList;
 use Magento\Framework\Controller\Result\JsonFactory;
+use Magento\Framework\Controller\ResultFactory;
 use Magento\Framework\Filesystem;
+use Magento\Framework\Filesystem\Io\File;
 use Symfony\Component\Finder\Finder;
 use Unexpected\Webp\Helper\Config;
 use Unexpected\Webp\Helper\Converter;
+use function GuzzleHttp\json_encode;
 
-class Convert extends Action
+class Convert extends \Magento\Backend\App\Action
 {
     /** @var JsonFactory */
     private $resultJsonFactory;
@@ -27,7 +30,7 @@ class Convert extends Action
     /** @var Finder */
     private $finder;
 
-    /** @var Filesystem\Io\File */
+    /** @var File */
     private $file;
 
     /** @var DirectoryList */
@@ -75,7 +78,10 @@ class Convert extends Action
      */
     public function execute()
     {
+        $index = 0;
         $result = $this->resultJsonFactory->create();
+        $extensions = $this->getRequest()->getParam('extensions');
+        $convertedFiles = $this->getRequest()->getParam('converted_files');
 
         $mediaPath = $this->filesystem->getDirectoryRead(DirectoryList::MEDIA)->getAbsolutePath();
 
@@ -83,30 +89,35 @@ class Convert extends Action
             ->ignoreDotFiles(false)
             ->files()
             ->in($mediaPath)
-            ->name($this->config->getExtensionConfig());
-
-//        $i = 0;
+            ->name($extensions);
 
         foreach ($images as $image) {
-            $imagePath = $image->getPathname();
+            if ($index <= $convertedFiles + 100) {
+                if ($index >= $convertedFiles) {
+                    $imagePath = $image->getPathname();
 
-            $webpDir = $mediaPath . 'unexpected/webp/' . $image->getRelativePath();
-            $webpImage = substr_replace($image->getFilename(), 'webp', strrpos($image->getFilename(), '.') + 1);
-            $webpPath = $webpDir . '/' . $webpImage;
+                    $webpDir = $mediaPath . 'unexpected/webp/' . $image->getRelativePath();
+                    $webpImage = substr_replace($image->getFilename(), 'webp', strrpos($image->getFilename(), '.') + 1);
+                    $webpPath = $webpDir . '/' . $webpImage;
 
-            if (!file_exists($webpDir)) {
-                $this->file->mkdir($webpDir);
+                    if (!file_exists($webpDir)) {
+                        $this->file->mkdir($webpDir);
+                    }
+
+                    $this->converter->convert($imagePath, $webpPath);
+                }
+                $index++;
+            } else {
+                $convertedFiles = $index - 1;
+                break;
             }
-
-            $this->converter->convert($imagePath, $webpPath);
-
-//            $i++;
-//            if ($i === 100) {
-//                break;
-//            }
         }
 
-        $result->setData(['output' => $mediaPath]);
+        if ($index === $images->count()) {
+            $convertedFiles = $index;
+        }
+
+        $result->setData(['converted_files' => $convertedFiles]);
 
         return $result;
     }

@@ -10,7 +10,7 @@ namespace Unexpected\Webp\Helper;
 use Jcupitt\Vips\Image;
 use Symfony\Component\Process\Exception\ProcessFailedException;
 use Symfony\Component\Process\Process;
-use Unexpected\Webp\Model\Config\Source\Type;
+use Unexpected\Webp\Model\Config\Source\Algorithm;
 
 class Converter
 {
@@ -28,14 +28,14 @@ class Converter
 
     public function convert(string $imagePath, string $webpPath)
     {
-        switch ($this->config->getTypeConfig()) {
-            case Type::WEBP_TYPE:
+        switch ($this->config->getAlgorithmConfig()) {
+            case Algorithm::WEBP_ALGORITHM:
                 $this->convertWebp($imagePath, $webpPath);
                 break;
-            case Type::CWEBP_TYPE:
+            case Algorithm::CWEBP_ALGORITHM:
                 $this->convertCwebp($imagePath, $webpPath);
                 break;
-            case Type::VIPS_TYPE:
+            case Algorithm::VIPS_ALGORITHM:
                 $this->convertVips($imagePath, $webpPath);
                 break;
         }

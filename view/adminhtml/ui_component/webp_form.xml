@@ -83,15 +83,15 @@
                     <settings>
                         <options>
                             <option name="1" xsi:type="array">
-                                <item name="value" xsi:type="string">jpg</item>
+                                <item name="value" xsi:type="string">*.jpg</item>
                                 <item name="label" xsi:type="string">JPG</item>
                             </option>
                             <option name="2" xsi:type="array">
-                                <item name="value" xsi:type="string">jpeg</item>
+                                <item name="value" xsi:type="string">*.jpeg</item>
                                 <item name="label" xsi:type="string">JPEG</item>
                             </option>
                             <option name="3" xsi:type="array">
-                                <item name="value" xsi:type="string">png</item>
+                                <item name="value" xsi:type="string">*.png</item>
                                 <item name="label" xsi:type="string">PNG</item>
                             </option>
                         </options>
@@ -197,15 +197,15 @@
                     <settings>
                         <options>
                             <option name="1" xsi:type="array">
-                                <item name="value" xsi:type="string">jpg</item>
+                                <item name="value" xsi:type="string">*.jpg</item>
                                 <item name="label" xsi:type="string">JPG</item>
                             </option>
                             <option name="2" xsi:type="array">
-                                <item name="value" xsi:type="string">jpeg</item>
+                                <item name="value" xsi:type="string">*.jpeg</item>
                                 <item name="label" xsi:type="string">JPEG</item>
                             </option>
                             <option name="3" xsi:type="array">
-                                <item name="value" xsi:type="string">png</item>
+                                <item name="value" xsi:type="string">*.png</item>
                                 <item name="label" xsi:type="string">PNG</item>
                             </option>
                         </options>
