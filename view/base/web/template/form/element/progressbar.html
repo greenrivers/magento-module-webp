@@ -1,7 +1,7 @@
-<button id="convert" type="button" data-bind="click: onClick">
-    <span data-bind="text: label + ' now'"></span>
+<button type="button" data-bind="enable: isDone() , click: onClick">
+    <span data-bind="text: label"></span>
 </button>
 
 <div id="progressBar">
-    <div id="progress" data-bind="text: value() + '%', style: {width: value() + '%'}"></div>
+    <div id="progress" data-bind="text: value(), style: {width: value()}"></div>
 </div>

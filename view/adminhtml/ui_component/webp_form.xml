@@ -66,9 +66,9 @@
         <field name="convert" sortOrder="10" formElement="input" template="ui/form/field">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
-                    <item name="component" xsi:type="string">Unexpected_Webp/js/form/element/progressbar</item>
+                    <item name="component" xsi:type="string">Unexpected_Webp/js/form/element/convert-progressbar</item>
                     <item name="elementTmpl" xsi:type="string">Unexpected_Webp/form/element/progressbar</item>
-                    <item name="label" xsi:type="string" translate="true">Convert</item>
+                    <item name="label" xsi:type="string" translate="true">Convert now</item>
                 </item>
             </argument>
         </field>
@@ -223,9 +223,9 @@
         <field name="clear" sortOrder="10" formElement="input" template="ui/form/field">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
-                    <item name="component" xsi:type="string">Unexpected_Webp/js/form/element/progressbar</item>
+                    <item name="component" xsi:type="string">Unexpected_Webp/js/form/element/clear-progressbar</item>
                     <item name="elementTmpl" xsi:type="string">Unexpected_Webp/form/element/progressbar</item>
-                    <item name="label" xsi:type="string" translate="true">Clear</item>
+                    <item name="label" xsi:type="string" translate="true">Clear all</item>
                 </item>
             </argument>
         </field>

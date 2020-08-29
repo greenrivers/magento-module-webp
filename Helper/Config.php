@@ -54,12 +54,11 @@ class Config extends AbstractHelper
     }
 
     /**
-     * @return array
+     * @return string
      */
-    public function getAlgorithmConfig(): array
+    public function getAlgorithmConfig(): string
     {
-        $algorithms = $this->scopeConfig->getValue(self::XML_ALGORITHM_CONFIG_PATH, ScopeInterface::SCOPE_STORE);
-        return explode(',', $algorithms);
+        return $this->scopeConfig->getValue(self::XML_ALGORITHM_CONFIG_PATH, ScopeInterface::SCOPE_STORE);
     }
 
     /**

@@ -26,7 +26,11 @@ class Converter
         $this->config = $config;
     }
 
-    public function convert(string $imagePath, string $webpPath)
+    /**
+     * @param string $imagePath
+     * @param string $webpPath
+     */
+    public function convert(string $imagePath, string $webpPath): void
     {
         switch ($this->config->getAlgorithmConfig()) {
             case Algorithm::WEBP_ALGORITHM:
@@ -41,6 +45,10 @@ class Converter
         }
     }
 
+    /**
+     * @param string $imagePath
+     * @param string $webpPath
+     */
     private function convertWebp(string $imagePath, string $webpPath)
     {
         $image = imagecreatefromstring(file_get_contents($imagePath));
@@ -49,6 +57,11 @@ class Converter
         $image = ob_get_clean();
     }
 
+    /**
+     * @param string $imagePath
+     * @param string $webpPath
+     * @return string
+     */
     private function convertCwebp(string $imagePath, string $webpPath)
     {
         $quality = $this->config->getQualityConfig();
@@ -60,6 +73,11 @@ class Converter
         return $process->getOutput();
     }
 
+    /**
+     * @param string $imagePath
+     * @param string $webpPath
+     * @throws \Jcupitt\Vips\Exception
+     */
     private function convertVips(string $imagePath, string $webpPath)
     {
         $image = Image::newFromBuffer(file_get_contents($imagePath));

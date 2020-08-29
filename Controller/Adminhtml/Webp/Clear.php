@@ -12,9 +12,10 @@ use Magento\Backend\App\Action\Context;
 use Magento\Framework\App\Filesystem\DirectoryList;
 use Magento\Framework\Controller\Result\JsonFactory;
 use Magento\Framework\Filesystem;
+use Magento\Framework\Filesystem\Driver\File;
 use Symfony\Component\Finder\Finder;
 
-class Files extends Action
+class Clear extends Action
 {
     /** @var JsonFactory */
     private $resultJsonFactory;
@@ -25,24 +26,30 @@ class Files extends Action
     /** @var Finder */
     private $finder;
 
+    /** @var File */
+    private $file;
+
     /**
-     * Files constructor.
+     * Clear constructor.
      * @param Context $context
      * @param JsonFactory $resultJsonFactory
      * @param Filesystem $filesystem
      * @param Finder $finder
+     * @param File $file
      */
     public function __construct(
         Context $context,
         JsonFactory $resultJsonFactory,
         Filesystem $filesystem,
-        Finder $finder
+        Finder $finder,
+        File $file
     ) {
         parent::__construct($context);
 
         $this->resultJsonFactory = $resultJsonFactory;
         $this->filesystem = $filesystem;
         $this->finder = $finder;
+        $this->file = $file;
     }
 
     /**
@@ -51,23 +58,31 @@ class Files extends Action
     public function execute()
     {
         $result = $this->resultJsonFactory->create();
+        $removedFiles = 0;
         $mediaPath = $this->filesystem->getDirectoryRead(DirectoryList::MEDIA)->getAbsolutePath();
-        $extensions = $this->getRequest()->getParam('extensions');
-        $folders = $this->getRequest()->getParam('folders', $mediaPath);
-
-        if (is_array($folders)) {
-            $folders = array_map(function ($val) use ($mediaPath) {
-                return $mediaPath . $val;
-            }, $folders);
-        }
+        $webpDir = $mediaPath . 'unexpected/webp/';
 
         $images = $this->finder
             ->ignoreDotFiles(false)
             ->files()
-            ->in($folders)
-            ->name($extensions);
+            ->in($webpDir)
+            ->name('*.webp');
 
-        $result->setData(['files' => $images->count()]);
+        foreach ($images as $image) {
+            if ($removedFiles < 100) {
+                $imagePath = $image->getPathname();
+
+                if ($this->file->isExists($imagePath)) {
+                    $this->file->deleteFile($imagePath);
+                }
+
+                $removedFiles++;
+            } else {
+                break;
+            }
+        }
+
+        $result->setData(['removed_files' => $removedFiles]);
 
         return $result;
     }

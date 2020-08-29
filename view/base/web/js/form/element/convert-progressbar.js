@@ -9,14 +9,16 @@ define([
     'ko',
     'uiRegistry',
     'Magento_Ui/js/form/element/abstract',
+    'Magento_Ui/js/modal/alert',
     'domReady!'
-], function ($, ko, registry, AbstractElement) {
+], function ($, ko, registry, AbstractElement, alert) {
     'use strict';
 
     return AbstractElement.extend({
         defaults: {
             template: 'Unexpected_Webp/form/element/progressbar',
-            value: ko.observable(0)
+            value: ko.observable(0),
+            isDone: ko.observable(true)
         },
 
         /**
@@ -27,7 +29,9 @@ define([
         },
 
         onClick: function () {
+            const that = this;
             const extensions = registry.get('index = conversion_image_formats');
+            const folders = registry.get('index = conversion_folders');
             let totalFiles = 0;
             let convertedFiles = 0;
 
@@ -35,55 +39,44 @@ define([
                 location.origin + '/admin/unexpected_webp/webp/files',
                 {
                     form_key: window.FORM_KEY,
-                    extensions: extensions.value()
+                    extensions: extensions.value(),
+                    folders: folders.value()
                 }
             ).done(function (data) {
                 totalFiles = data.files;
+                that.isDone(false);
 
-                recursively_ajax();
+                process();
             });
 
-            function recursively_ajax() {
-                console.warn("begin");
+            function process() {
                 $.post(
                     location.origin + '/admin/unexpected_webp/webp/convert',
                     {
                         form_key: window.FORM_KEY,
                         extensions: extensions.value(),
-                        converted_files: convertedFiles
+                        converted_files: convertedFiles,
+                        folders: folders.value()
                     }
                 ).done(function (data) {
                     convertedFiles = data.converted_files;
-                    console.log(convertedFiles);
+                    const percentage = Math.round((convertedFiles / totalFiles) * 100);
+                    that.value(percentage + '%');
+
                     if (convertedFiles < totalFiles) {
-                        setTimeout(recursively_ajax, 300);
+                        setTimeout(process, 300);
+                    } else {
+                        that.isDone(true);
+                        that.value('Complete');
+                        alert({
+                            title: 'Conversion summary',
+                            content: `<span>Total: ${totalFiles}</span><br><br><span>Converted: ${convertedFiles}</span>`,
+                            autoOpen: true,
+                            clickableOverlay: false
+                        });
                     }
                 });
             }
-
-            const percentage = this.value();
-
-            if (percentage < 100) {
-                this.value(percentage + 1);
-            }
-        },
-
-        /**
-         * @inheritdoc
-         */
-        initObservable: function () {
-            this._super()
-                .observe({
-                    value: ko.observable(0)
-                });
-
-            this.value.subscribe(function (value) {
-                if (value > 100) {
-                    alert(1);
-                }
-            }, this);
-
-            return this;
         }
     });
 });
