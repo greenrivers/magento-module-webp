@@ -32,8 +32,8 @@ define([
             const that = this;
             const extensions = registry.get('index = conversion_image_formats');
             const folders = registry.get('index = conversion_folders');
-            let totalFiles = 0;
-            let convertedFiles = 0;
+            let totalImages = 0;
+            let convertedImages = 0;
 
             $.post(
                 location.origin + '/admin/unexpected_webp/webp/files',
@@ -43,7 +43,7 @@ define([
                     folders: folders.value()
                 }
             ).done(function (data) {
-                totalFiles = data.files;
+                totalImages = data.files;
                 that.isDone(false);
 
                 process();
@@ -55,22 +55,22 @@ define([
                     {
                         form_key: window.FORM_KEY,
                         extensions: extensions.value(),
-                        converted_files: convertedFiles,
+                        converted_images: convertedImages,
                         folders: folders.value()
                     }
                 ).done(function (data) {
-                    convertedFiles = data.converted_files;
-                    const percentage = Math.round((convertedFiles / totalFiles) * 100);
+                    convertedImages = data.converted_images;
+                    const percentage = Math.round((convertedImages / totalImages) * 100);
                     that.value(percentage + '%');
 
-                    if (convertedFiles < totalFiles) {
+                    if (convertedImages < totalImages) {
                         setTimeout(process, 300);
                     } else {
                         that.isDone(true);
                         that.value('Complete');
                         alert({
                             title: 'Conversion summary',
-                            content: `<span>Total: ${totalFiles}</span><br><br><span>Converted: ${convertedFiles}</span>`,
+                            content: `<span>Total: ${totalImages}</span><br><br><span>Converted: ${convertedImages}</span>`,
                             autoOpen: true,
                             clickableOverlay: false
                         });

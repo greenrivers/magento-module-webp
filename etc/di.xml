@@ -18,14 +18,27 @@
         <arguments>
             <argument name="name" xsi:type="string">Unexpected_Webp Logger</argument>
             <argument name="handlers" xsi:type="array">
-                <item name="debug" xsi:type="object">Magento\Payment\Model\Method\MyCustomDebug</item>
+                <item name="debug" xsi:type="object">Unexpected\Webp\Logger\Handler</item>
             </argument>
         </arguments>
     </virtualType>
 
     <type name="Unexpected\Webp\Helper\Converter">
         <arguments>
-            <argument name="logger" xsi:type="object">Unexpected\Webp\Logger\Handler</argument>
+            <argument name="logger" xsi:type="object">Unexpected\Webp\Logger</argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\Framework\Console\CommandListInterface">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="unexpected_webp_convert_command" xsi:type="object">
+                    Unexpected\Webp\Console\Command\Convert
+                </item>
+                <item name="unexpected_webp_clear_command" xsi:type="object">
+                    Unexpected\Webp\Console\Command\Clear
+                </item>
+            </argument>
         </arguments>
     </type>
 </config>

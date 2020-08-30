@@ -36,8 +36,7 @@ define([
             $.post(
                 location.origin + '/admin/unexpected_webp/webp/files',
                 {
-                    form_key: window.FORM_KEY,
-                    extensions: '*.webp'
+                    form_key: window.FORM_KEY
                 }
             ).done(function (data) {
                 totalFiles = data.files;

@@ -9,47 +9,32 @@ namespace Unexpected\Webp\Controller\Adminhtml\Webp;
 
 use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
-use Magento\Framework\App\Filesystem\DirectoryList;
 use Magento\Framework\Controller\Result\JsonFactory;
-use Magento\Framework\Filesystem;
-use Magento\Framework\Filesystem\Driver\File;
-use Symfony\Component\Finder\Finder;
+use Unexpected\Webp\Helper\Process;
 
 class Clear extends Action
 {
     /** @var JsonFactory */
     private $resultJsonFactory;
 
-    /** @var Filesystem */
-    private $filesystem;
-
-    /** @var Finder */
-    private $finder;
-
-    /** @var File */
-    private $file;
+    /** @var Process */
+    private $process;
 
     /**
      * Clear constructor.
      * @param Context $context
      * @param JsonFactory $resultJsonFactory
-     * @param Filesystem $filesystem
-     * @param Finder $finder
-     * @param File $file
+     * @param Process $process
      */
     public function __construct(
         Context $context,
         JsonFactory $resultJsonFactory,
-        Filesystem $filesystem,
-        Finder $finder,
-        File $file
+        Process $process
     ) {
         parent::__construct($context);
 
         $this->resultJsonFactory = $resultJsonFactory;
-        $this->filesystem = $filesystem;
-        $this->finder = $finder;
-        $this->file = $file;
+        $this->process = $process;
     }
 
     /**
@@ -58,29 +43,8 @@ class Clear extends Action
     public function execute()
     {
         $result = $this->resultJsonFactory->create();
-        $removedFiles = 0;
-        $mediaPath = $this->filesystem->getDirectoryRead(DirectoryList::MEDIA)->getAbsolutePath();
-        $webpDir = $mediaPath . 'unexpected/webp/';
-
-        $images = $this->finder
-            ->ignoreDotFiles(false)
-            ->files()
-            ->in($webpDir)
-            ->name('*.webp');
-
-        foreach ($images as $image) {
-            if ($removedFiles < 100) {
-                $imagePath = $image->getPathname();
-
-                if ($this->file->isExists($imagePath)) {
-                    $this->file->deleteFile($imagePath);
-                }
-
-                $removedFiles++;
-            } else {
-                break;
-            }
-        }
+        $images = $this->process->getImages();
+        $removedFiles = $this->process->clear($images);
 
         $result->setData(['removed_files' => $removedFiles]);
 

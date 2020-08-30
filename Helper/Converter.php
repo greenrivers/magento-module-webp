@@ -56,6 +56,8 @@ class Converter
             case Algorithm::VIPS_ALGORITHM:
                 return $this->convertVips($imagePath, $webpPath);
         }
+
+        return false;
     }
 
     /**

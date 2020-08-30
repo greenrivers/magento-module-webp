@@ -9,40 +9,29 @@ namespace Unexpected\Webp\Controller\Adminhtml\Webp;
 
 use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
-use Magento\Framework\App\Filesystem\DirectoryList;
 use Magento\Framework\Controller\Result\JsonFactory;
-use Magento\Framework\Filesystem;
-use Symfony\Component\Finder\Finder;
+use Unexpected\Webp\Helper\Process;
 
 class Files extends Action
 {
     /** @var JsonFactory */
     private $resultJsonFactory;
 
-    /** @var Filesystem */
-    private $filesystem;
-
-    /** @var Finder */
-    private $finder;
+    /** @var Process */
+    private $process;
 
     /**
      * Files constructor.
      * @param Context $context
      * @param JsonFactory $resultJsonFactory
-     * @param Filesystem $filesystem
-     * @param Finder $finder
+     * @param Process $process
      */
-    public function __construct(
-        Context $context,
-        JsonFactory $resultJsonFactory,
-        Filesystem $filesystem,
-        Finder $finder
-    ) {
+    public function __construct(Context $context, JsonFactory $resultJsonFactory, Process $process)
+    {
         parent::__construct($context);
 
         $this->resultJsonFactory = $resultJsonFactory;
-        $this->filesystem = $filesystem;
-        $this->finder = $finder;
+        $this->process = $process;
     }
 
     /**
@@ -51,25 +40,14 @@ class Files extends Action
     public function execute()
     {
         $result = $this->resultJsonFactory->create();
-        $mediaPath = $this->filesystem->getDirectoryRead(DirectoryList::MEDIA)->getAbsolutePath();
-        $extensions = $this->getRequest()->getParam('extensions');
-        $folders = $this->getRequest()->getParam('folders', $mediaPath);
+        $extensions = $this->getRequest()->getParam('extensions', ['*.webp']);
+        $folders = $this->getRequest()->getParam('folders');
 
-        if (is_array($folders)) {
-            if ($folders[0] === 'root') {
-                $folders = $mediaPath;
-            } else {
-                $folders = array_map(function ($val) use ($mediaPath) {
-                    return $mediaPath . $val;
-                }, $folders);
-            }
+        if ($folders) { // ToDo: one function depend on folders
+            $images = $this->process->getImages($extensions, $folders);
+        } else {
+            $images = $this->process->getImages($extensions);
         }
-
-        $images = $this->finder
-            ->ignoreDotFiles(false)
-            ->files()
-            ->in($folders)
-            ->name($extensions);
 
         $result->setData(['files' => $images->count()]);
 
