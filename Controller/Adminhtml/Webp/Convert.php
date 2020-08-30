@@ -19,6 +19,11 @@ use Unexpected\Webp\Helper\Converter;
 
 class Convert extends Action
 {
+    const MEDIA_PATH = 'pub/media';
+    const WEBP_PATH = 'unexpected/webp';
+
+    const INCREMENT = 100;
+
     /** @var JsonFactory */
     private $resultJsonFactory;
 
@@ -94,19 +99,23 @@ class Convert extends Action
             ->name($extensions);
 
         foreach ($images as $image) {
-            if ($index <= $convertedFiles + 100) {
+            if ($index <= $convertedFiles + self::INCREMENT) {
                 if ($index >= $convertedFiles) {
                     $imagePath = $image->getPathname();
 
-                    $webpDir = $mediaPath . 'unexpected/webp/' . $image->getRelativePath();
                     $webpImage = substr_replace(
-                        $image->getFilename(),
+                        $imagePath,
                         'webp',
-                        strrpos($image->getFilename(), '.') + 1
+                        strrpos($imagePath, '.') + 1
                     );
-                    $webpPath = $webpDir . '/' . $webpImage;
+                    $webpPath = str_replace(
+                        self::MEDIA_PATH,
+                        self::MEDIA_PATH . '/' . self::WEBP_PATH,
+                        $webpImage
+                    );
+                    $webpDir = $this->file->getDestinationFolder($webpPath);
 
-                    if (!$this->file->fileExists($webpDir)) {
+                    if (!$this->file->fileExists($webpPath)) {
                         $this->file->mkdir($webpDir);
                     }
 
