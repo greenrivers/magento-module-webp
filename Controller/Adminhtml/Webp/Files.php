@@ -56,9 +56,13 @@ class Files extends Action
         $folders = $this->getRequest()->getParam('folders', $mediaPath);
 
         if (is_array($folders)) {
-            $folders = array_map(function ($val) use ($mediaPath) {
-                return $mediaPath . $val;
-            }, $folders);
+            if ($folders[0] === 'root') {
+                $folders = $mediaPath;
+            } else {
+                $folders = array_map(function ($val) use ($mediaPath) {
+                    return $mediaPath . $val;
+                }, $folders);
+            }
         }
 
         $images = $this->finder

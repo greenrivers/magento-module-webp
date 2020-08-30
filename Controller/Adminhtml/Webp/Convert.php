@@ -88,9 +88,15 @@ class Convert extends Action
         $convertedFiles = $this->getRequest()->getParam('converted_files');
 
         $mediaPath = $this->filesystem->getDirectoryRead(DirectoryList::MEDIA)->getAbsolutePath();
-        $folders = array_map(function ($val) use ($mediaPath) {
-            return $mediaPath . $val;
-        }, $folders);
+        if (is_array($folders)) {
+            if ($folders[0] === 'root') {
+                $folders = $mediaPath;
+            } else {
+                $folders = array_map(function ($val) use ($mediaPath) {
+                    return $mediaPath . $val;
+                }, $folders);
+            }
+        }
 
         $images = $this->finder
             ->ignoreDotFiles(false)
