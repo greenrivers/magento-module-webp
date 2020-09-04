@@ -36,14 +36,14 @@ define([
             let convertedImages = 0;
 
             $.post(
-                location.origin + '/admin/unexpected_webp/webp/files',
+                location.origin + '/admin/unexpected_webp/webp/images',
                 {
                     form_key: window.FORM_KEY,
                     extensions: extensions.value(),
                     folders: folders.value()
                 }
             ).done(function (data) {
-                totalImages = data.files;
+                totalImages = data.images;
                 that.isDone(false);
 
                 process();

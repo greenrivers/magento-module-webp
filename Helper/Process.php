@@ -88,32 +88,35 @@ class Process
      * @param bool $command
      * @param ProgressBar|null $progressBar
      * @return int
-     * @throws \Magento\Framework\Exception\FileSystemException
      */
     public function clear(Finder $images, bool $command = false, ProgressBar $progressBar = null): int
     {
-        $removedFiles = 0;
+        $removedImages = 0;
         $step = $command ? $images->count() : 100;
 
         foreach ($images as $image) {
-            if ($removedFiles < $step) {
+            if ($removedImages < $step) {
                 $imagePath = $image->getPathname();
 
-                if ($this->file->isExists($imagePath)) {
-                    $this->file->deleteFile($imagePath);
+                try {
+                    if ($this->file->isExists($imagePath)) {
+                        $this->file->deleteFile($imagePath);
+                    }
+                } catch (FileSystemException $e) {
+                    $this->logger->error($e->getMessage());
                 }
 
                 if ($command) {
                     $progressBar->advance();
                 }
 
-                $removedFiles++;
+                $removedImages++;
             } else {
                 break;
             }
         }
 
-        return $removedFiles;
+        return $removedImages;
     }
 
     /**

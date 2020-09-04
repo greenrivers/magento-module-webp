@@ -30,16 +30,16 @@ define([
 
         onClick: function () {
             const that = this;
-            let totalFiles = 0;
-            let removedFiles = 0;
+            let totalImages = 0;
+            let removedImages = 0;
 
             $.post(
-                location.origin + '/admin/unexpected_webp/webp/files',
+                location.origin + '/admin/unexpected_webp/webp/images',
                 {
                     form_key: window.FORM_KEY
                 }
             ).done(function (data) {
-                totalFiles = data.files;
+                totalImages = data.images;
                 that.isDone(false);
 
                 process();
@@ -52,18 +52,18 @@ define([
                         form_key: window.FORM_KEY
                     }
                 ).done(function (data) {
-                    removedFiles += data.removed_files;
-                    const percentage = Math.round((removedFiles / totalFiles) * 100);
+                    removedImages += data.removed_images;
+                    const percentage = Math.round((removedImages / totalImages) * 100);
                     that.value(percentage + '%');
 
-                    if (removedFiles < totalFiles) {
+                    if (removedImages < totalImages) {
                         setTimeout(process, 300);
                     } else {
                         that.isDone(true);
                         that.value('Complete');
                         alert({
                             title: 'Clear summary',
-                            content: `<span>Total: ${totalFiles}</span><br><br><span>Removed: ${removedFiles}</span>`,
+                            content: `<span>Total: ${totalImages}</span><br><br><span>Removed: ${removedImages}</span>`,
                             autoOpen: true,
                             clickableOverlay: false
                         });

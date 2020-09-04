@@ -28,6 +28,11 @@
             <argument name="logger" xsi:type="object">Unexpected\Webp\Logger</argument>
         </arguments>
     </type>
+    <type name="Unexpected\Webp\Helper\Process">
+        <arguments>
+            <argument name="logger" xsi:type="object">Unexpected\Webp\Logger</argument>
+        </arguments>
+    </type>
 
     <type name="Magento\Framework\Console\CommandListInterface">
         <arguments>

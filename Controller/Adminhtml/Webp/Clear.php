@@ -26,11 +26,8 @@ class Clear extends Action
      * @param JsonFactory $resultJsonFactory
      * @param Process $process
      */
-    public function __construct(
-        Context $context,
-        JsonFactory $resultJsonFactory,
-        Process $process
-    ) {
+    public function __construct(Context $context, JsonFactory $resultJsonFactory, Process $process)
+    {
         parent::__construct($context);
 
         $this->resultJsonFactory = $resultJsonFactory;
@@ -44,9 +41,9 @@ class Clear extends Action
     {
         $result = $this->resultJsonFactory->create();
         $images = $this->process->getImages();
-        $removedFiles = $this->process->clear($images);
+        $removedImages = $this->process->clear($images);
 
-        $result->setData(['removed_files' => $removedFiles]);
+        $result->setData(['removed_images' => $removedImages]);
 
         return $result;
     }

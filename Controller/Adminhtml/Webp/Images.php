@@ -12,7 +12,7 @@ use Magento\Backend\App\Action\Context;
 use Magento\Framework\Controller\Result\JsonFactory;
 use Unexpected\Webp\Helper\Process;
 
-class Files extends Action
+class Images extends Action
 {
     /** @var JsonFactory */
     private $resultJsonFactory;
@@ -49,7 +49,7 @@ class Files extends Action
             $images = $this->process->getImages($extensions);
         }
 
-        $result->setData(['files' => $images->count()]);
+        $result->setData(['images' => $images->count()]);
 
         return $result;
     }
