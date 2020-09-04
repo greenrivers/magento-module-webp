@@ -158,7 +158,7 @@ class Process
                         $this->logger->error($e->getMessage());
                     }
 
-                    if ($command) {
+                    if ($command && $progressBar) {
                         $progressBar->advance();
                     }
                 }

@@ -5,6 +5,7 @@ use Unexpected\Webp\Block\Adminhtml\Conversion\Time;
 /** @var Time $block */
 $elementHtml = $block->getTimeElementHtml();
 $elementName = $block->getTimeElementName();
+$elementValue = $block->getTimeElementValue();
 ?>
 
 <div class="admin__field-label">
@@ -25,6 +26,22 @@ $elementName = $block->getTimeElementName();
     ], function ($) {
         $(function () {
             const formName = 'time';
+
+            setInitValue();
+
+            function setInitValue() {
+                const value = '<?= $elementValue ?>';
+                $('#time')
+                    .attr('data-form-part', 'webp_form')
+                    .prop('name', formName)
+                    .val(value);
+
+                const values = value.split(',');
+                $(`select[data-ui-id="form-element-timehour"]`).val(values[0]);
+                $(`select[data-ui-id="form-element-timeminute"]`).val(values[1]);
+                $(`select[data-ui-id="form-element-timesecond"]`).val(values[2]);
+            }
+
             $(`select[name="${formName}"]`).on('change', function () {
                 let time = '';
 
@@ -39,10 +56,7 @@ $elementName = $block->getTimeElementName();
                     }
                 });
 
-                $('#time')
-                    .attr('data-form-part', 'webp_form')
-                    .prop('name', formName)
-                    .val(time);
+                $('#time').val(time);
             });
         });
     });

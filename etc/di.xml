@@ -23,7 +23,17 @@
         </arguments>
     </virtualType>
 
+    <type name="Unexpected\Webp\Cron\Convert">
+        <arguments>
+            <argument name="logger" xsi:type="object">Unexpected\Webp\Logger</argument>
+        </arguments>
+    </type>
     <type name="Unexpected\Webp\Helper\Converter">
+        <arguments>
+            <argument name="logger" xsi:type="object">Unexpected\Webp\Logger</argument>
+        </arguments>
+    </type>
+    <type name="Unexpected\Webp\Helper\Cron">
         <arguments>
             <argument name="logger" xsi:type="object">Unexpected\Webp\Logger</argument>
         </arguments>

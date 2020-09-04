@@ -4,6 +4,7 @@ namespace Unexpected\Webp\Block\Adminhtml\Conversion;
 
 use Magento\Framework\View\Element\Template;
 use Magento\Framework\View\Element\Template\Context;
+use Unexpected\Webp\Helper\Config;
 use Unexpected\Webp\Utils\Form\Element\Time as TimeElement;
 
 class Time extends Template
@@ -14,17 +15,22 @@ class Time extends Template
     /** @var TimeElement */
     private $timeElement;
 
+    /** @var Config */
+    private $config;
+
     /**
      * Time constructor.
      * @param Context $context
      * @param TimeElement $timeElement
+     * @param Config $config
      * @param array $data
      */
-    public function __construct(Context $context, TimeElement $timeElement, array $data = [])
+    public function __construct(Context $context, TimeElement $timeElement, Config $config, array $data = [])
     {
         parent::__construct($context, $data);
 
         $this->timeElement = $timeElement;
+        $this->config = $config;
     }
 
     /**
@@ -41,5 +47,13 @@ class Time extends Template
     public function getTimeElementName(): string
     {
         return $this->timeElement->getName();
+    }
+
+    /**
+     * @return string
+     */
+    public function getTimeElementValue(): string
+    {
+        return $this->config->getCronTimeConfig();
     }
 }
