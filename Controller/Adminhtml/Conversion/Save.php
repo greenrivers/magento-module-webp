@@ -11,6 +11,7 @@ use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
 use Magento\Framework\App\Cache\TypeListInterface;
 use Unexpected\Webp\Helper\Config;
+use Unexpected\Webp\Helper\Cron;
 
 class Save extends Action
 {
@@ -25,18 +26,23 @@ class Save extends Action
     /** @var TypeListInterface */
     private $cacheTypeList;
 
+    /** @var Cron */
+    private $cron;
+
     /**
      * Save constructor.
      * @param Context $context
      * @param Config $config
      * @param TypeListInterface $cacheTypeList
+     * @param Cron $cron
      */
-    public function __construct(Context $context, Config $config, TypeListInterface $cacheTypeList)
+    public function __construct(Context $context, Config $config, TypeListInterface $cacheTypeList, Cron $cron)
     {
         parent::__construct($context);
 
         $this->config = $config;
         $this->cacheTypeList = $cacheTypeList;
+        $this->cron = $cron;
     }
 
     /**
@@ -78,6 +84,8 @@ class Save extends Action
             $this->config->setValueConfig(Config::XML_CRON_FREQUENCY_CONFIG_PATH, $frequency);
             $this->config->setValueConfig(Config::XML_CRON_TIME_CONFIG_PATH, $time);
             $this->config->setValueConfig(Config::XML_CRON_IMAGE_FORMATS_CONFIG_PATH, $cronImageFormats);
+
+            $this->cron->saveConfig($time, $frequency);
         } else {
             $this->config->setValueConfig(Config::XML_CONVERSION_FOLDERS_CONFIG_PATH, $conversionFolders);
             $this->config->setValueConfig(Config::XML_CONVERSION_IMAGE_FORMATS_CONFIG_PATH, $conversionImageFormats);
