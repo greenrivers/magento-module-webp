@@ -67,7 +67,7 @@ class Process
         $mediaPath = $this->filesystem->getDirectoryRead(DirectoryList::MEDIA)->getAbsolutePath();
 
         if (empty($folders)) {
-            $folders = $mediaPath . 'unexpected/webp/';
+            $folders = $mediaPath . self::WEBP_PATH . DIRECTORY_SEPARATOR;
         } else if ($folders[0] === 'root') {
             $folders = $mediaPath;
         } else {
@@ -171,7 +171,7 @@ class Process
         );
         $webpPath = str_replace(
             self::MEDIA_PATH,
-            self::MEDIA_PATH . '/' . self::WEBP_PATH,
+            self::MEDIA_PATH . DIRECTORY_SEPARATOR . self::WEBP_PATH,
             $webpImage
         );
         $webpDir = $this->file->getParentDirectory($webpPath);

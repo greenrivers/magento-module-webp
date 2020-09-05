@@ -44,6 +44,11 @@
         </arguments>
     </type>
 
+    <type name="Magento\Framework\Filter\DirectiveProcessor\LegacyDirective">
+        <plugin name="Unexpected_Webp::Filter_LegacyDirective"
+                type="Unexpected\Webp\Plugin\Filter\DirectiveProcessor\LegacyDirective"/>
+    </type>
+
     <type name="Magento\Framework\Console\CommandListInterface">
         <arguments>
             <argument name="commands" xsi:type="array">
