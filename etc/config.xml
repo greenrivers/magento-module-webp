@@ -18,7 +18,7 @@
                 <quality>75</quality>
             </settings>
             <conversion>
-                <convert_upload>0</convert_upload>
+                <convert_product_images>0</convert_product_images>
             </conversion>
         </webp>
     </default>

@@ -136,27 +136,7 @@ class Process
                 if ($index >= $convertedImages) {
                     $imagePath = $image->getPathname();
 
-                    $webpImage = substr_replace(
-                        $imagePath,
-                        'webp',
-                        strrpos($imagePath, '.') + 1
-                    );
-                    $webpPath = str_replace(
-                        self::MEDIA_PATH,
-                        self::MEDIA_PATH . '/' . self::WEBP_PATH,
-                        $webpImage
-                    );
-                    $webpDir = $this->file->getParentDirectory($webpPath);
-
-                    try {
-                        if (!$this->file->isExists($webpPath)) {
-                            $this->file->createDirectory($webpDir);
-                        }
-
-                        $this->converter->convert($imagePath, $webpPath);
-                    } catch (FileSystemException $e) {
-                        $this->logger->error($e->getMessage());
-                    }
+                    $this->doConvert($imagePath);
 
                     if ($command && $progressBar) {
                         $progressBar->advance();
@@ -175,5 +155,35 @@ class Process
         }
 
         return $convertedImages;
+    }
+
+
+    /**
+     * @param string $imagePath
+     * @return bool
+     */
+    public function doConvert(string $imagePath): bool
+    {
+        $webpImage = substr_replace(
+            $imagePath,
+            'webp',
+            strrpos($imagePath, '.') + 1
+        );
+        $webpPath = str_replace(
+            self::MEDIA_PATH,
+            self::MEDIA_PATH . '/' . self::WEBP_PATH,
+            $webpImage
+        );
+        $webpDir = $this->file->getParentDirectory($webpPath);
+
+        try {
+            if (!$this->file->isExists($webpPath)) {
+                $this->file->createDirectory($webpDir);
+            }
+        } catch (FileSystemException $e) {
+            $this->logger->error($e->getMessage());
+        }
+
+        return $this->converter->convert($imagePath, $webpPath);
     }
 }

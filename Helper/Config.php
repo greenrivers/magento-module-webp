@@ -19,7 +19,7 @@ class Config extends AbstractHelper
     const XML_ALGORITHM_CONFIG_PATH = 'webp/settings/algorithm';
     const XML_QUALITY_CONFIG_PATH = 'webp/settings/quality';
 
-    const XML_CONVERT_UPLOAD_CONFIG_PATH = 'webp/conversion/convert_upload';
+    const XML_CONVERT_PRODUCT_IMAGES_CONFIG_PATH = 'webp/conversion/convert_product_images';
 
     const XML_CONVERSION_FOLDERS_CONFIG_PATH = 'webp/conversion/folders';
     const XML_CONVERSION_IMAGE_FORMATS_CONFIG_PATH = 'webp/conversion/image_formats';
@@ -72,9 +72,9 @@ class Config extends AbstractHelper
     /**
      * @return bool
      */
-    public function getConvertUploadConfig(): bool
+    public function getConvertProductImagesConfig(): bool
     {
-        return $this->scopeConfig->getValue(self::XML_CONVERT_UPLOAD_CONFIG_PATH, ScopeInterface::SCOPE_STORE);
+        return $this->scopeConfig->getValue(self::XML_CONVERT_PRODUCT_IMAGES_CONFIG_PATH, ScopeInterface::SCOPE_STORE);
     }
 
     /**

@@ -37,7 +37,7 @@ class Convert
 
     public function execute()
     {
-        if ($this->config->getCronEnabledConfig()) {
+        if ($this->config->getEnabledConfig() && $this->config->getCronEnabledConfig()) {
             $extensions = $this->config->getCronImageFormatsConfig();
             $folders = $this->config->getCronFoldersConfig();
 

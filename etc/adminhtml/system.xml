@@ -44,9 +44,9 @@
             <group id="conversion" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="0"
                    showInStore="0">
                 <label>Conversion</label>
-                <field id="convert_upload" translate="label" type="checkbox" sortOrder="10" showInDefault="1"
+                <field id="convert_product_images" translate="label" type="checkbox" sortOrder="10" showInDefault="1"
                        showInWebsite="1" showInStore="1">
-                    <label>Convert image after upload</label>
+                    <label>Convert images on product save</label>
                     <frontend_model>Unexpected\Webp\Block\Adminhtml\System\Config\ToggleSwitch</frontend_model>
                 </field>
             </group>
