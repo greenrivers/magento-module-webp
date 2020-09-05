@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Unexpected Team
+ * @copyright Copyright (c) 2020 Unexpected
+ * @package Unexpected_Webp
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Catalog\Block\Product\Image">
+        <plugin name="Unexpected_Webp::Block_Image" type="Unexpected\Webp\Plugin\Block\Product\Image"/>
+    </type>
+    <type name="Magento\Catalog\Block\Product\View\Gallery">
+        <plugin name="Unexpected_Webp::Block_Gallery" type="Unexpected\Webp\Plugin\Block\Product\View\Gallery"/>
+    </type>
+    <type name="Magento\Checkout\CustomerData\AbstractItem">
+        <plugin name="Unexpected_Webp::CustomerData_AbstractItem"
+                type="Unexpected\Webp\Plugin\CustomerData\AbstractItem"/>
+    </type>
+</config>

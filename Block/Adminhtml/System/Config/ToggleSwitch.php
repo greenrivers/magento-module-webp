@@ -15,7 +15,7 @@ use Unexpected\Webp\Helper\Config;
 class ToggleSwitch extends Field
 {
     const WEBP_GENERAL_ENABLED = 'webp-general-enabled';
-    const WEBP_CONVERT_UPLOAD = 'webp-conversion-convert-upload';
+    const WEBP_CONVERT_PRODUCT_IMAGES = 'webp-conversion-convert-product-images';
 
     /** @var string */
     protected $_template = 'Unexpected_Webp::system/config/toggle_switch.phtml';
@@ -52,8 +52,8 @@ class ToggleSwitch extends Field
             case self::WEBP_GENERAL_ENABLED:
                 $component['value'] = $this->config->getEnabledConfig();
                 break;
-            case self::WEBP_CONVERT_UPLOAD:
-                $component['value'] = $this->config->getConvertUploadConfig();
+            case self::WEBP_CONVERT_PRODUCT_IMAGES:
+                $component['value'] = $this->config->getConvertProductImagesConfig();
                 break;
         }
 
