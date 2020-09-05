@@ -44,6 +44,11 @@
         </arguments>
     </type>
 
+    <type name="Magento\Framework\Filter\Template">
+        <plugin name="Unexpected_Webp::Filter_Template"
+                type="Unexpected\Webp\Plugin\Filter\Template"/>
+    </type>
+
     <type name="Magento\Framework\Console\CommandListInterface">
         <arguments>
             <argument name="commands" xsi:type="array">
