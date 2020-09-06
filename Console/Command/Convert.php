@@ -29,9 +29,9 @@ class Convert extends Command
      */
     public function __construct(Process $process, string $name = null)
     {
-        $this->process = $process;
-
         parent::__construct($name);
+
+        $this->process = $process;
     }
 
     /**

@@ -65,7 +65,7 @@ class ConvertProductImages implements ObserverInterface
                 $this->process->doConvert($imagePath);
 
                 $file = $productImage->getFile();
-                $image = substr(strrchr($file, '/'), 1);
+                $image = substr(strrchr($file, DIRECTORY_SEPARATOR), 1);
                 $this->finder = Finder::create();
                 $cachedImages = $this->finder
                     ->ignoreDotFiles(false)

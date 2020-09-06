@@ -35,7 +35,7 @@ class Convert
         $this->logger = $logger;
     }
 
-    public function execute()
+    public function execute(): void
     {
         if ($this->config->getEnabledConfig() && $this->config->getCronEnabledConfig()) {
             $extensions = $this->config->getCronImageFormatsConfig();

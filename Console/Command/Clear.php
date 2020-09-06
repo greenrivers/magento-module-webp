@@ -1,4 +1,9 @@
 <?php
+/**
+ * @author Unexpected Team
+ * @copyright Copyright (c) 2020 Unexpected
+ * @package Unexpected_Webp
+ */
 
 namespace Unexpected\Webp\Console\Command;
 
@@ -20,9 +25,9 @@ class Clear extends Command
      */
     public function __construct(Process $process, string $name = null)
     {
-        $this->process = $process;
-
         parent::__construct($name);
+
+        $this->process = $process;
     }
 
     /**

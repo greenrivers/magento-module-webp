@@ -25,11 +25,11 @@ class AbstractItem
     }
 
     /**
-     * @param Subject $item
+     * @param Subject $subject
      * @param array $result
      * @return array
      */
-    public function afterGetItemData(Subject $item, array $result): array
+    public function afterGetItemData(Subject $subject, array $result): array
     {
         if ($result['product_id'] > 0) {
             $webpImage = $this->image->changePath($result['product_image']['src']);

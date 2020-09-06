@@ -1,8 +1,12 @@
 <?php
+/**
+ * @author Unexpected Team
+ * @copyright Copyright (c) 2020 Unexpected
+ * @package Unexpected_Webp
+ */
 
 namespace Unexpected\Webp\Block\Adminhtml\Conversion\Buttons;
 
-use Magento\Framework\UrlInterface;
 use Magento\Framework\View\Element\UiComponent\Control\ButtonProviderInterface;
 
 class ConvertNowButton extends GenericButton implements ButtonProviderInterface

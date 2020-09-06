@@ -7,7 +7,7 @@
 
 namespace Unexpected\Webp\Plugin\Block\Product;
 
-use Magento\Catalog\Block\Product\Image as ProductImage;
+use Magento\Catalog\Block\Product\Image as Subject;
 use Unexpected\Webp\Helper\Image as ImageHelper;
 
 class Image
@@ -25,14 +25,14 @@ class Image
     }
 
     /**
-     * @param ProductImage $image
+     * @param Subject $subject
      * @param $result
      * @param string $method
      * @return string
      */
-    public function after__call(ProductImage $image, $result, string $method): string
+    public function after__call(Subject $subject, $result, string $method): string
     {
-        if ($method == 'getImageUrl' && $image->getProductId() > 0) {
+        if ($method == 'getImageUrl' && $subject->getProductId() > 0) {
             $result = $this->imageHelper->changePath($result);
         }
 

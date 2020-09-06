@@ -28,10 +28,10 @@ class Convert extends Action
      */
     public function __construct(Context $context, JsonFactory $resultJsonFactory, Process $process)
     {
+        parent::__construct($context);
+
         $this->resultJsonFactory = $resultJsonFactory;
         $this->process = $process;
-
-        parent::__construct($context);
     }
 
     /**
