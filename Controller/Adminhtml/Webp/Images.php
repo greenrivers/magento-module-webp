@@ -41,13 +41,9 @@ class Images extends Action
     {
         $result = $this->resultJsonFactory->create();
         $extensions = $this->getRequest()->getParam('extensions', ['*.webp']);
-        $folders = $this->getRequest()->getParam('folders');
+        $folders = $this->getRequest()->getParam('folders', []);
 
-        if ($folders) { // ToDo: one function depend on folders
-            $images = $this->process->getImages($extensions, $folders);
-        } else {
-            $images = $this->process->getImages($extensions);
-        }
+        $images = $this->process->getImages($extensions, $folders);
 
         $result->setData(['images' => $images->count()]);
 

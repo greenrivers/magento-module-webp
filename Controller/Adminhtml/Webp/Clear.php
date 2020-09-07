@@ -41,8 +41,8 @@ class Clear extends Action
     {
         $result = $this->resultJsonFactory->create();
         $images = $this->process->getImages();
-        $removedImages = $this->process->clear($images);
 
+        $removedImages = $this->process->clear($images);
         $result->setData(['removed_images' => $removedImages]);
 
         return $result;

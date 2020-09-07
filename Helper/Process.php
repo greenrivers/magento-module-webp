@@ -17,6 +17,8 @@ use Symfony\Component\Finder\Finder;
 
 class Process
 {
+    const INCREMENT = 100;
+
     const MEDIA_PATH = 'pub/media';
     const WEBP_PATH = 'unexpected/webp';
 
@@ -92,7 +94,7 @@ class Process
     public function clear(Finder $images, bool $command = false, ProgressBar $progressBar = null): int
     {
         $removedImages = 0;
-        $step = $command ? $images->count() : 100;
+        $step = $command ? $images->count() : self::INCREMENT;
 
         foreach ($images as $image) {
             if ($removedImages < $step) {
@@ -126,10 +128,14 @@ class Process
      * @param int $convertedImages
      * @return int
      */
-    public function convert(Finder $images, bool $command = false, ProgressBar $progressBar = null, int $convertedImages = 0): int
-    {
+    public function convert(
+        Finder $images,
+        bool $command = false,
+        ProgressBar $progressBar = null,
+        int $convertedImages = 0
+    ): int {
         $index = 0;
-        $step = $command ? $images->count() : 100;
+        $step = $command ? $images->count() : self::INCREMENT;
 
         foreach ($images as $image) {
             if ($index <= $convertedImages + $step) {
