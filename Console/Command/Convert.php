@@ -73,11 +73,12 @@ class Convert extends Command
         });
 
         $images = $this->process->getImages($extensions, $folders);
+        $imagesToConversion = $this->process->getImagesToConversion($images);
 
-        $progressBar = new ProgressBar($output, $images->count());
+        $progressBar = new ProgressBar($output, count($imagesToConversion));
         $progressBar->start();
 
-        $convertedImages = $this->process->convert($images, true, $progressBar);
+        $convertedImages = $this->process->convert($imagesToConversion, true, $progressBar);
 
         $progressBar->finish();
         $output->writeln("\n<info>Converted images: ${convertedImages}</info>");

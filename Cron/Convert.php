@@ -42,11 +42,14 @@ class Convert
             $folders = $this->config->getCronFoldersConfig();
 
             $images = $this->process->getImages($extensions, $folders);
-            $count = $images->count();
+            $imagesToConversion = $this->process->getImagesToConversion($images);
+            $countImages = $images->count();
+            $countImagesToConversion = count($imagesToConversion);
 
-            $this->logger->info("Cron total images: ${count}");
+            $this->logger->info("Cron total images: ${countImages}");
+            $this->logger->info("Cron images to conversion: ${countImagesToConversion}");
 
-            $convertedImages = $this->process->convert($images, true);
+            $convertedImages = $this->process->convert($imagesToConversion, true);
 
             $this->logger->info("Cron converted images: ${convertedImages}");
         }

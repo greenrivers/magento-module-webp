@@ -34,6 +34,9 @@ class Process
     /** @var Converter */
     private $converter;
 
+    /** @var Image */
+    private $image;
+
     /** @var LoggerInterface */
     private $logger;
 
@@ -43,6 +46,7 @@ class Process
      * @param Finder $finder
      * @param File $file
      * @param Converter $converter
+     * @param Image $image
      * @param LoggerInterface $logger
      */
     public function __construct(
@@ -50,12 +54,14 @@ class Process
         Finder $finder,
         File $file,
         Converter $converter,
+        Image $image,
         LoggerInterface $logger
     ) {
         $this->filesystem = $filesystem;
         $this->finder = $finder;
         $this->file = $file;
         $this->converter = $converter;
+        $this->image = $image;
         $this->logger = $logger;
     }
 
@@ -83,6 +89,26 @@ class Process
             ->files()
             ->in($folders)
             ->name($extensions);
+    }
+
+    /**
+     * @param Finder $images
+     * @return array
+     */
+    public function getImagesToConversion(Finder $images): array
+    {
+        $imagesToConversion = [];
+
+        foreach ($images as $image) {
+            $imagePath = $image->getPathname();
+            $webpPath = $this->image->changePath($imagePath);
+
+            if ($imagePath === $webpPath) {
+                $imagesToConversion[] = $image;
+            }
+        }
+
+        return $imagesToConversion;
     }
 
     /**
@@ -122,20 +148,20 @@ class Process
     }
 
     /**
-     * @param Finder $images
+     * @param array $images
      * @param bool $command
      * @param ProgressBar|null $progressBar
      * @param int $convertedImages
      * @return int
      */
     public function convert(
-        Finder $images,
+        array $images,
         bool $command = false,
         ProgressBar $progressBar = null,
         int $convertedImages = 0
     ): int {
         $index = 0;
-        $step = $command ? $images->count() : self::INCREMENT;
+        $step = $command ? count($images) : self::INCREMENT;
 
         foreach ($images as $image) {
             if ($index <= $convertedImages + $step) {
@@ -156,7 +182,7 @@ class Process
             }
         }
 
-        if ($index === $images->count()) {
+        if ($index === count($images)) {
             $convertedImages = $index;
         }
 

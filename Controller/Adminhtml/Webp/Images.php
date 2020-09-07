@@ -44,8 +44,8 @@ class Images extends Action
         $folders = $this->getRequest()->getParam('folders', []);
 
         $images = $this->process->getImages($extensions, $folders);
-
-        $result->setData(['images' => $images->count()]);
+        $imagesToConversion = $this->process->getImagesToConversion($images);
+        $result->setData(['images' => $images->count(), 'images_to_conversion' => count($imagesToConversion)]);
 
         return $result;
     }

@@ -33,6 +33,7 @@ define([
             const extensions = registry.get('index = conversion_image_formats');
             const folders = registry.get('index = conversion_folders');
             let totalImages = 0;
+            let imagesToConversion = 0;
             let convertedImages = 0;
 
             $.post(
@@ -44,6 +45,7 @@ define([
                 }
             ).done(function (data) {
                 totalImages = data.images;
+                imagesToConversion = data.images_to_conversion;
                 that.isDone(false);
 
                 process();
@@ -60,17 +62,21 @@ define([
                     }
                 ).done(function (data) {
                     convertedImages = data.converted_images;
-                    const percentage = Math.round((convertedImages / totalImages) * 100);
+                    const percentage = Math.round((convertedImages / imagesToConversion) * 100);
                     that.value(percentage + '%');
 
-                    if (convertedImages < totalImages) {
+                    if (convertedImages < imagesToConversion) {
                         setTimeout(process, 300);
                     } else {
                         that.isDone(true);
                         that.value('Complete');
                         alert({
                             title: 'Conversion summary',
-                            content: `<span>Total: ${totalImages}</span><br><br><span>Converted: ${convertedImages}</span>`,
+                            content: `
+                                <span>Total: ${totalImages}</span><br><br>
+                                <span>To conversion: ${imagesToConversion}</span><br><br>
+                                <span>Converted: ${convertedImages}</span>
+                            `,
                             autoOpen: true,
                             clickableOverlay: false
                         });

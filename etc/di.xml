@@ -43,6 +43,11 @@
             <argument name="logger" xsi:type="object">Unexpected\Webp\Logger</argument>
         </arguments>
     </type>
+    <type name="Unexpected\Webp\Helper\Image">
+        <arguments>
+            <argument name="logger" xsi:type="object">Unexpected\Webp\Logger</argument>
+        </arguments>
+    </type>
     <type name="Unexpected\Webp\Helper\Process">
         <arguments>
             <argument name="logger" xsi:type="object">Unexpected\Webp\Logger</argument>
