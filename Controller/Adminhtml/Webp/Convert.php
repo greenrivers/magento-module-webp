@@ -42,12 +42,11 @@ class Convert extends Action
         $result = $this->resultJsonFactory->create();
         $extensions = $this->getRequest()->getParam('extensions');
         $folders = $this->getRequest()->getParam('folders');
-        $convertedImages = $this->getRequest()->getParam('converted_images');
 
         $images = $this->process->getImages($extensions, $folders);
         $imagesToConversion = $this->process->getImagesToConversion($images);
 
-        $convertedImages = $this->process->convert($imagesToConversion, false, null, $convertedImages);
+        $convertedImages = $this->process->convert($imagesToConversion, false, null);
 
         $result->setData(['converted_images' => $convertedImages]);
 

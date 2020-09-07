@@ -57,11 +57,10 @@ define([
                     {
                         form_key: window.FORM_KEY,
                         extensions: extensions.value(),
-                        converted_images: convertedImages,
                         folders: folders.value()
                     }
                 ).done(function (data) {
-                    convertedImages = data.converted_images;
+                    convertedImages += data.converted_images;
                     const percentage = Math.round((convertedImages / imagesToConversion) * 100);
                     that.value(percentage + '%');
 

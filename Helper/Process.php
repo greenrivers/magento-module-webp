@@ -151,33 +151,27 @@ class Process
      * @param array $images
      * @param bool $command
      * @param ProgressBar|null $progressBar
-     * @param int $convertedImages
      * @return int
      */
-    public function convert(
-        array $images,
-        bool $command = false,
-        ProgressBar $progressBar = null,
-        int $convertedImages = 0
-    ): int {
+    public function convert(array $images, bool $command = false, ProgressBar $progressBar = null): int
+    {
+        $convertedImages = 0;
         $index = 0;
         $step = $command ? count($images) : self::INCREMENT;
 
         foreach ($images as $image) {
-            if ($index <= $convertedImages + $step) {
-                if ($index >= $convertedImages) {
-                    $imagePath = $image->getPathname();
+            if ($index <= $step) {
+                $imagePath = $image->getPathname();
 
-                    $this->doConvert($imagePath);
+                $this->doConvert($imagePath);
 
-                    if ($command && $progressBar) {
-                        $progressBar->advance();
-                    }
+                if ($command && $progressBar) {
+                    $progressBar->advance();
                 }
 
                 $index++;
             } else {
-                $convertedImages = $index - 1;
+                $convertedImages = $index;
                 break;
             }
         }
