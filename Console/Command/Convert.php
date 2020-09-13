@@ -79,7 +79,7 @@ class Convert extends Command
         $progressBar->start();
 
         $convertData = $this->process->convert($imagesToConversion, true, $progressBar);
-        $convertedImages = $convertData['converted_images'] - $convertData['error_images'];
+        $convertedImages = $convertData['converted_images'];
         $errorImages = $convertData['error_images'];
 
         $progressBar->finish();

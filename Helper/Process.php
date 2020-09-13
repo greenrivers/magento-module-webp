@@ -40,6 +40,9 @@ class Process
     /** @var LoggerInterface */
     private $logger;
 
+    /** @var array */
+    private $errorImages;
+
     /**
      * Process constructor.
      * @param Filesystem $filesystem
@@ -48,6 +51,7 @@ class Process
      * @param Converter $converter
      * @param Image $image
      * @param LoggerInterface $logger
+     * @param array $errorImages
      */
     public function __construct(
         Filesystem $filesystem,
@@ -55,7 +59,8 @@ class Process
         File $file,
         Converter $converter,
         Image $image,
-        LoggerInterface $logger
+        LoggerInterface $logger,
+        array $errorImages = []
     ) {
         $this->filesystem = $filesystem;
         $this->finder = $finder;
@@ -63,6 +68,7 @@ class Process
         $this->converter = $converter;
         $this->image = $image;
         $this->logger = $logger;
+        $this->errorImages = $errorImages;
     }
 
     /**
@@ -156,7 +162,6 @@ class Process
     public function convert(array $images, bool $command = false, ProgressBar $progressBar = null): array
     {
         $convertedImages = 0;
-        $errorImages = 0;
         $index = 0;
         $step = $command ? count($images) : self::INCREMENT;
 
@@ -166,27 +171,30 @@ class Process
 
                 $result = $this->doConvert($imagePath);
 
-                if (!$result) {
-                    $errorImages++;
-                    $this->logger->error("Can't convert image with path: ${imagePath}");
-                }
+                if ($result) {
+                    $convertedImages++;
 
-                if ($command && $progressBar) {
-                    $progressBar->advance();
+                    if ($command && $progressBar) {
+                        $progressBar->advance();
+                    }
+                } else {
+                    $errorImages = $this->getErrorImages();
+
+                    if (!array_key_exists($imagePath, $errorImages)) {
+                        $errorImages[] = $imagePath;
+                        $this->setErrorImages($errorImages);
+
+                        $this->logger->error("Invalid image with path: ${imagePath}");
+                    }
                 }
 
                 $index++;
             } else {
-                $convertedImages = $index;
                 break;
             }
         }
 
-        if ($index === count($images)) {
-            $convertedImages = $index;
-        }
-
-        return ['converted_images' => $convertedImages, 'error_images' => $errorImages];
+        return ['converted_images' => $convertedImages, 'error_images' => count($this->getErrorImages())];
     }
 
 
@@ -217,5 +225,21 @@ class Process
         }
 
         return $this->converter->convert($imagePath, $webpPath);
+    }
+
+    /**
+     * @return array
+     */
+    public function getErrorImages(): array
+    {
+        return $this->errorImages;
+    }
+
+    /**
+     * @param array $errorImages
+     */
+    public function setErrorImages(array $errorImages): void
+    {
+        $this->errorImages = $errorImages;
     }
 }

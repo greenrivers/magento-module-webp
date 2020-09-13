@@ -62,16 +62,14 @@ define([
                     }
                 ).done(function (data) {
                     convertedImages += data.converted_images;
-                    errorImages += data.error_images;
+                    errorImages = data.error_images;
 
                     const percentage = Math.round((convertedImages / imagesToConversion) * 100);
                     that.value(percentage + '%');
 
-                    if (convertedImages < imagesToConversion) {
+                    if (convertedImages + errorImages < imagesToConversion) {
                         setTimeout(process, 300);
                     } else {
-                        convertedImages -= errorImages;
-
                         that.isDone(true);
                         that.value('Complete');
                         alert({

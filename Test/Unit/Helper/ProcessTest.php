@@ -76,7 +76,8 @@ class ProcessTest extends TestCase
             $this->fileMock,
             $this->converterMock,
             $this->imageMock,
-            $this->loggerMock
+            $this->loggerMock,
+            []
         ];
         $this->process = $this->getObjectManager()->getObject(Process::class, $properties);
         $this->setAccessibleProperties($this->process, $properties);
@@ -316,7 +317,7 @@ class ProcessTest extends TestCase
 
         $this->assertArrayHasKey('converted_images', $result);
         $this->assertArrayHasKey('error_images', $result);
-        $this->assertEquals(4, $result['converted_images']);
+        $this->assertEquals(3, $result['converted_images']);
         $this->assertEquals(1, $result['error_images']);
         $this->assertInternalType(IsType::TYPE_ARRAY, $result);
     }

@@ -50,7 +50,7 @@ class Convert
             $this->logger->info("Cron images to conversion: ${countImagesToConversion}");
 
             $convertData = $this->process->convert($imagesToConversion, true);
-            $convertedImages = $convertData['converted_images'] - $convertData['error_images'];
+            $convertedImages = $convertData['converted_images'];
             $errorImages = $convertData['error_images'];
 
             $this->logger->info("Cron converted images: ${convertedImages}, errors images: ${errorImages}");
