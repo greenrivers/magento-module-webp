@@ -35,6 +35,7 @@ define([
             let totalImages = 0;
             let imagesToConversion = 0;
             let convertedImages = 0;
+            let errorImages = 0;
 
             $.post(
                 location.origin + '/admin/unexpected_webp/webp/images',
@@ -61,12 +62,16 @@ define([
                     }
                 ).done(function (data) {
                     convertedImages += data.converted_images;
+                    errorImages += data.error_images;
+
                     const percentage = Math.round((convertedImages / imagesToConversion) * 100);
                     that.value(percentage + '%');
 
                     if (convertedImages < imagesToConversion) {
                         setTimeout(process, 300);
                     } else {
+                        convertedImages -= errorImages;
+
                         that.isDone(true);
                         that.value('Complete');
                         alert({
@@ -74,7 +79,8 @@ define([
                             content: `
                                 <span>Total: ${totalImages}</span><br><br>
                                 <span>To conversion: ${imagesToConversion}</span><br><br>
-                                <span>Converted: ${convertedImages}</span>
+                                <span>Converted: ${convertedImages}</span><br><br>
+                                <span>Errors: ${errorImages}</span>
                             `,
                             autoOpen: true,
                             clickableOverlay: false

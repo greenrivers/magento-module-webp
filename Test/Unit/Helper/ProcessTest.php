@@ -241,6 +241,10 @@ class ProcessTest extends TestCase
             ->disableOriginalConstructor()
             ->setMethods(['getPathname'])
             ->getMock();
+        $image4Mock = $this->getMockBuilder(SplFileInfo::class)
+            ->disableOriginalConstructor()
+            ->setMethods(['getPathname'])
+            ->getMock();
 
         $image1Mock->expects(self::once())
             ->method('getPathname')
@@ -251,35 +255,42 @@ class ProcessTest extends TestCase
         $image3Mock->expects(self::once())
             ->method('getPathname')
             ->willReturn('/var/www/magento2/pub/media/wysiwyg/text.png');
-        $this->fileMock->expects(self::exactly(3))
+        $image4Mock->expects(self::once())
+            ->method('getPathname')
+            ->willReturn('/var/www/magento2/pub/media/theme/invalid.jpg');
+        $this->fileMock->expects(self::exactly(4))
             ->method('getParentDirectory')
             ->withConsecutive(
                 ['/var/www/magento2/pub/media/unexpected/webp/captcha/captcha.webp'],
                 ['/var/www/magento2/pub/media/unexpected/webp/catalog/product.webp'],
-                ['/var/www/magento2/pub/media/unexpected/webp/wysiwyg/text.webp']
+                ['/var/www/magento2/pub/media/unexpected/webp/wysiwyg/text.webp'],
+                ['/var/www/magento2/pub/media/unexpected/webp/theme/invalid.webp']
             )
             ->willReturnOnConsecutiveCalls(
                 '/var/www/magento2/pub/media/unexpected/webp/captcha',
                 '/var/www/magento2/pub/media/unexpected/webp/catalog',
-                '/var/www/magento2/pub/media/unexpected/webp/wysiwyg'
+                '/var/www/magento2/pub/media/unexpected/webp/wysiwyg',
+                '/var/www/magento2/pub/media/unexpected/webp/theme'
             );
-        $this->fileMock->expects(self::exactly(3))
+        $this->fileMock->expects(self::exactly(4))
             ->method('isExists')
             ->withConsecutive(
                 ['/var/www/magento2/pub/media/unexpected/webp/captcha/captcha.webp'],
                 ['/var/www/magento2/pub/media/unexpected/webp/catalog/product.webp'],
-                ['/var/www/magento2/pub/media/unexpected/webp/wysiwyg/text.webp']
+                ['/var/www/magento2/pub/media/unexpected/webp/wysiwyg/text.webp'],
+                ['/var/www/magento2/pub/media/unexpected/webp/theme/invalid.webp']
             )
             ->willReturn(false);
-        $this->fileMock->expects(self::exactly(3))
+        $this->fileMock->expects(self::exactly(4))
             ->method('createDirectory')
             ->withConsecutive(
                 ['/var/www/magento2/pub/media/unexpected/webp/captcha'],
                 ['/var/www/magento2/pub/media/unexpected/webp/catalog'],
-                ['/var/www/magento2/pub/media/unexpected/webp/wysiwyg']
+                ['/var/www/magento2/pub/media/unexpected/webp/wysiwyg'],
+                ['/var/www/magento2/pub/media/unexpected/webp/theme']
             )
             ->willReturn(true);
-        $this->converterMock->expects(self::exactly(3))
+        $this->converterMock->expects(self::exactly(4))
             ->method('convert')
             ->withConsecutive(
                 [
@@ -293,13 +304,20 @@ class ProcessTest extends TestCase
                 [
                     '/var/www/magento2/pub/media/wysiwyg/text.png',
                     '/var/www/magento2/pub/media/unexpected/webp/wysiwyg/text.webp'
+                ],
+                [
+                    '/var/www/magento2/pub/media/theme/invalid.jpg',
+                    '/var/www/magento2/pub/media/unexpected/webp/theme/invalid.webp'
                 ]
             )
-            ->willReturn(true);
+            ->willReturn(true, true, true, false);
 
-        $result = $this->process->convert([$image1Mock, $image2Mock, $image3Mock]);
+        $result = $this->process->convert([$image1Mock, $image2Mock, $image3Mock, $image4Mock]);
 
-        $this->assertEquals(3, $result);
-        $this->assertInternalType(IsType::TYPE_INT, $result);
+        $this->assertArrayHasKey('converted_images', $result);
+        $this->assertArrayHasKey('error_images', $result);
+        $this->assertEquals(4, $result['converted_images']);
+        $this->assertEquals(1, $result['error_images']);
+        $this->assertInternalType(IsType::TYPE_ARRAY, $result);
     }
 }

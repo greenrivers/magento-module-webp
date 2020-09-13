@@ -46,9 +46,9 @@ class Convert extends Action
         $images = $this->process->getImages($extensions, $folders);
         $imagesToConversion = $this->process->getImagesToConversion($images);
 
-        $convertedImages = $this->process->convert($imagesToConversion, false, null);
+        $convertData = $this->process->convert($imagesToConversion, false, null);
 
-        $result->setData(['converted_images' => $convertedImages]);
+        $result->setData($convertData);
 
         return $result;
     }

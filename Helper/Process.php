@@ -151,11 +151,12 @@ class Process
      * @param array $images
      * @param bool $command
      * @param ProgressBar|null $progressBar
-     * @return int
+     * @return array
      */
-    public function convert(array $images, bool $command = false, ProgressBar $progressBar = null): int
+    public function convert(array $images, bool $command = false, ProgressBar $progressBar = null): array
     {
         $convertedImages = 0;
+        $errorImages = 0;
         $index = 0;
         $step = $command ? count($images) : self::INCREMENT;
 
@@ -163,7 +164,12 @@ class Process
             if ($index <= $step) {
                 $imagePath = $image->getPathname();
 
-                $this->doConvert($imagePath);
+                $result = $this->doConvert($imagePath);
+
+                if (!$result) {
+                    $errorImages++;
+                    $this->logger->error("Can't convert image with path: ${imagePath}");
+                }
 
                 if ($command && $progressBar) {
                     $progressBar->advance();
@@ -180,7 +186,7 @@ class Process
             $convertedImages = $index;
         }
 
-        return $convertedImages;
+        return ['converted_images' => $convertedImages, 'error_images' => $errorImages];
     }
 
 
