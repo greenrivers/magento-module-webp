@@ -72,6 +72,12 @@ Click Save to remember settings also You have to clear cache after this.
 
 #### Catalog->Products
 
+Upload images in **Images And Videos** tab.
+
+Update changes by click on **Save** button.
+
+All images assigned to product should be converted.
+
 ## Sources
 
 https://developers.google.com/speed/webp
