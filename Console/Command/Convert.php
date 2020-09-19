@@ -40,7 +40,7 @@ class Convert extends Command
     protected function configure()
     {
         $this->setName('unexpected:webp:convert');
-        $this->setDescription('Convert all images to webp format');
+        $this->setDescription('Convert images to webp format');
         $this->addOption(
             self::EXTENSIONS_OPTION,
             null,

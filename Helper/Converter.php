@@ -79,9 +79,10 @@ class Converter
         }
 
         ob_start();
-        imagewebp($image, $webpPath, $this->config->getQualityConfig());
+        $result = imagewebp($image, $webpPath, $this->config->getQualityConfig());
+        ob_get_clean();
 
-        return ob_get_clean();
+        return $result;
     }
 
     /**
