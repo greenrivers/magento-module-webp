@@ -20,6 +20,11 @@
             <conversion>
                 <convert_product_images>0</convert_product_images>
             </conversion>
+            <cron>
+                <enabled>0</enabled>
+                <frequency>D</frequency>
+                <time>00,00,00</time>
+            </cron>
         </webp>
     </default>
 </config>

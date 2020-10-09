@@ -98,21 +98,23 @@ define([
             const nodes = folders.value();
 
             nodes.forEach(node => {
-                node = node.replaceAll('/', '\\/');
-                treeInstance.check_node(`#${node}`);
+                if (node) {
+                    node = node.replaceAll('/', '\\/');
+                    treeInstance.check_node(`#${node}`);
 
-                const nodesSplit = node.split('\\/');
+                    const nodesSplit = node.split('\\/');
 
-                if (nodesSplit.length > 1) {
-                    nodesSplit.forEach((node, i) => {
-                        const destNode = nodesSplit.slice(0, i + 1).join('\\/');
+                    if (nodesSplit.length > 1) {
+                        nodesSplit.forEach((node, i) => {
+                            const destNode = nodesSplit.slice(0, i + 1).join('\\/');
 
-                        if (i < nodesSplit.length - 1) {
-                            $(`#${destNode}`)
-                                .removeClass('jstree-unchecked jstree-checked')
-                                .addClass('jstree-undetermined');
-                        }
-                    })
+                            if (i < nodesSplit.length - 1) {
+                                $(`#${destNode}`)
+                                    .removeClass('jstree-unchecked jstree-checked')
+                                    .addClass('jstree-undetermined');
+                            }
+                        })
+                    }
                 }
             });
         }
