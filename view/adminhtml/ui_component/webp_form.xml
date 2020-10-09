@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 /**
- * @author Unexpected Team
- * @copyright Copyright (c) 2020 Unexpected
- * @package Unexpected_Webp
+ * @author GreenRivers Team
+ * @copyright Copyright (c) 2020 GreenRivers
+ * @package GreenRivers_Webp
  */
 -->
 <form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -22,9 +22,9 @@
     </argument>
     <settings>
         <buttons>
-            <button name="convert_now" class="Unexpected\Webp\Block\Adminhtml\Conversion\Buttons\ConvertNowButton"/>
-            <button name="cron" class="Unexpected\Webp\Block\Adminhtml\Conversion\Buttons\CronButton"/>
-            <button name="save" class="Unexpected\Webp\Block\Adminhtml\Conversion\Buttons\SaveButton"/>
+            <button name="convert_now" class="GreenRivers\Webp\Block\Adminhtml\Conversion\Buttons\ConvertNowButton"/>
+            <button name="cron" class="GreenRivers\Webp\Block\Adminhtml\Conversion\Buttons\CronButton"/>
+            <button name="save" class="GreenRivers\Webp\Block\Adminhtml\Conversion\Buttons\SaveButton"/>
         </buttons>
         <namespace>webp_form</namespace>
         <dataScope>data</dataScope>
@@ -41,7 +41,7 @@
         <settings>
             <submitUrl path="*/*/save"/>
         </settings>
-        <dataProvider class="Unexpected\Webp\Model\Conversion\DataProvider" name="webp_form_data_source">
+        <dataProvider class="GreenRivers\Webp\Model\Conversion\DataProvider" name="webp_form_data_source">
             <settings>
                 <requestFieldName>id</requestFieldName>
                 <primaryFieldName>entity_id</primaryFieldName>
@@ -66,8 +66,8 @@
         <field name="convert" sortOrder="10" formElement="input" template="ui/form/field">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
-                    <item name="component" xsi:type="string">Unexpected_Webp/js/form/element/convert-progressbar</item>
-                    <item name="elementTmpl" xsi:type="string">Unexpected_Webp/form/element/progressbar</item>
+                    <item name="component" xsi:type="string">GreenRivers_Webp/js/form/element/convert-progressbar</item>
+                    <item name="elementTmpl" xsi:type="string">GreenRivers_Webp/form/element/progressbar</item>
                     <item name="label" xsi:type="string" translate="true">Convert now</item>
                 </item>
             </argument>
@@ -181,7 +181,7 @@
                     <link name="visible">${ $.parentName }.cron:checked</link>
                 </imports>
             </settings>
-            <block class="Unexpected\Webp\Block\Adminhtml\Conversion\Time" name="time"/>
+            <block class="GreenRivers\Webp\Block\Adminhtml\Conversion\Time" name="time"/>
         </htmlContent>
         <field name="cron_image_formats" sortOrder="40" formElement="multiselect">
             <settings>
@@ -223,8 +223,8 @@
         <field name="clear" sortOrder="10" formElement="input" template="ui/form/field">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
-                    <item name="component" xsi:type="string">Unexpected_Webp/js/form/element/clear-progressbar</item>
-                    <item name="elementTmpl" xsi:type="string">Unexpected_Webp/form/element/progressbar</item>
+                    <item name="component" xsi:type="string">GreenRivers_Webp/js/form/element/clear-progressbar</item>
+                    <item name="elementTmpl" xsi:type="string">GreenRivers_Webp/form/element/progressbar</item>
                     <item name="label" xsi:type="string" translate="true">Clear all</item>
                 </item>
             </argument>

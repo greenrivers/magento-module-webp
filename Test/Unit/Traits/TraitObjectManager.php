@@ -1,11 +1,11 @@
 <?php
 /**
- * @author Unexpected Team
- * @copyright Copyright (c) 2020 Unexpected
- * @package Unexpected_Webp
+ * @author GreenRivers Team
+ * @copyright Copyright (c) 2020 GreenRivers
+ * @package GreenRivers_Webp
  */
 
-namespace Unexpected\Webp\Test\Unit\Traits;
+namespace GreenRivers\Webp\Test\Unit\Traits;
 
 use Magento\Framework\TestFramework\Unit\Helper\ObjectManager;
 

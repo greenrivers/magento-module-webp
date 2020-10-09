@@ -1,20 +1,20 @@
 <?php
 /**
- * @author Unexpected Team
- * @copyright Copyright (c) 2020 Unexpected
- * @package Unexpected_Webp
+ * @author GreenRivers Team
+ * @copyright Copyright (c) 2020 GreenRivers
+ * @package GreenRivers_Webp
  */
 
-namespace Unexpected\Webp\Test\Unit\Helper;
+namespace GreenRivers\Webp\Test\Unit\Helper;
 
 use Magento\Framework\App\Filesystem\DirectoryList;
 use Magento\Framework\Filesystem\Driver\File;
 use PHPUnit\Framework\TestCase;
 use PHPUnit_Framework_MockObject_MockObject;
 use Psr\Log\LoggerInterface;
-use Unexpected\Webp\Helper\TreeNodes;
-use Unexpected\Webp\Test\Unit\Traits\TraitObjectManager;
-use Unexpected\Webp\Test\Unit\Traits\TraitReflectionClass;
+use GreenRivers\Webp\Helper\TreeNodes;
+use GreenRivers\Webp\Test\Unit\Traits\TraitObjectManager;
+use GreenRivers\Webp\Test\Unit\Traits\TraitReflectionClass;
 
 class TreeNodesTest extends TestCase
 {

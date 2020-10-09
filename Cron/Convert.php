@@ -1,15 +1,15 @@
 <?php
 /**
- * @author Unexpected Team
- * @copyright Copyright (c) 2020 Unexpected
- * @package Unexpected_Webp
+ * @author GreenRivers Team
+ * @copyright Copyright (c) 2020 GreenRivers
+ * @package GreenRivers_Webp
  */
 
-namespace Unexpected\Webp\Cron;
+namespace GreenRivers\Webp\Cron;
 
 use Psr\Log\LoggerInterface;
-use Unexpected\Webp\Helper\Config;
-use Unexpected\Webp\Helper\Process;
+use GreenRivers\Webp\Helper\Config;
+use GreenRivers\Webp\Helper\Process;
 
 class Convert
 {

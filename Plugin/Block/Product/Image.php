@@ -1,14 +1,14 @@
 <?php
 /**
- * @author Unexpected Team
- * @copyright Copyright (c) 2020 Unexpected
- * @package Unexpected_Webp
+ * @author GreenRivers Team
+ * @copyright Copyright (c) 2020 GreenRivers
+ * @package GreenRivers_Webp
  */
 
-namespace Unexpected\Webp\Plugin\Block\Product;
+namespace GreenRivers\Webp\Plugin\Block\Product;
 
 use Magento\Catalog\Block\Product\Image as Subject;
-use Unexpected\Webp\Helper\Image as ImageHelper;
+use GreenRivers\Webp\Helper\Image as ImageHelper;
 
 class Image
 {

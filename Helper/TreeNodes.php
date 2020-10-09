@@ -1,11 +1,11 @@
 <?php
 /**
- * @author Unexpected Team
- * @copyright Copyright (c) 2020 Unexpected
- * @package Unexpected_Webp
+ * @author GreenRivers Team
+ * @copyright Copyright (c) 2020 GreenRivers
+ * @package GreenRivers_Webp
  */
 
-namespace Unexpected\Webp\Helper;
+namespace GreenRivers\Webp\Helper;
 
 use Magento\Framework\App\Filesystem\DirectoryList;
 use Magento\Framework\Exception\FileSystemException;
@@ -15,7 +15,7 @@ use Psr\Log\LoggerInterface;
 class TreeNodes
 {
     const ROOT_ID = 'root';
-    const UNEXPECTED_DIR = 'unexpected';
+    const GREENRIVERS_DIR = 'greenrivers';
 
     /** @var DirectoryList */
     private $directoryList;
@@ -55,7 +55,7 @@ class TreeNodes
             $paths = $this->driverFile->readDirectory($path);
             foreach ($paths as $path) {
                 $dirName = substr(strrchr($path, DIRECTORY_SEPARATOR), 1);
-                if ($this->driverFile->isDirectory($path) && $dirName !== self::UNEXPECTED_DIR) {
+                if ($this->driverFile->isDirectory($path) && $dirName !== self::GREENRIVERS_DIR) {
                     $dirId = substr($path, strpos($path, DirectoryList::MEDIA . DIRECTORY_SEPARATOR) + 6);
 
                     $directories[] = [

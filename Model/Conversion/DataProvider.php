@@ -1,18 +1,18 @@
 <?php
 /**
- * @author Unexpected Team
- * @copyright Copyright (c) 2020 Unexpected
- * @package Unexpected_Webp
+ * @author GreenRivers Team
+ * @copyright Copyright (c) 2020 GreenRivers
+ * @package GreenRivers_Webp
  */
 
-namespace Unexpected\Webp\Model\Conversion;
+namespace GreenRivers\Webp\Model\Conversion;
 
 use Magento\Framework\Api\FilterBuilder;
 use Magento\Framework\Api\Search\ReportingInterface;
 use Magento\Framework\Api\Search\SearchCriteriaBuilder;
 use Magento\Framework\App\RequestInterface;
 use Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider as BaseDataProvider;
-use Unexpected\Webp\Helper\Config;
+use GreenRivers\Webp\Helper\Config;
 
 class DataProvider extends BaseDataProvider
 {

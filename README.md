@@ -1,4 +1,4 @@
-# Unexpected Webp
+# GreenRivers Webp
 
 Magento2 module for images conversion to webp format.
 
@@ -47,9 +47,9 @@ Magento2 module for images conversion to webp format.
 3. Module
 
     ```php
-    composer require unexpected/webp
+    composer require greenrivers/webp
     
-    php bin/magento module:enable unexpected/webp
+    php bin/magento module:enable greenrivers/webp
     
     php bin/magento setup:upgrade
     
@@ -60,7 +60,7 @@ Magento2 module for images conversion to webp format.
 
 ## Usage
 
-#### **Stores->Configuration->Unexpected->Webp**
+#### **Stores->Configuration->GREENRIVERS->Webp**
 
 * **General->Enabled** - module activation
 * **Settings->Algorithm** - choose one from three method types 

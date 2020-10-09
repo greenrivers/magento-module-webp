@@ -1,11 +1,11 @@
 <?php
 /**
- * @author Unexpected Team
- * @copyright Copyright (c) 2020 Unexpected
- * @package Unexpected_Webp
+ * @author GreenRivers Team
+ * @copyright Copyright (c) 2020 GreenRivers
+ * @package GreenRivers_Webp
  */
 
-namespace Unexpected\Webp\Helper;
+namespace GreenRivers\Webp\Helper;
 
 use Exception;
 use Magento\Cron\Model\Config\Source\Frequency;
@@ -14,8 +14,8 @@ use Psr\Log\LoggerInterface;
 
 class Cron
 {
-    const CRON_STRING_PATH = 'crontab/unexpected/jobs/unexpected_webp_convert/schedule/cron_expr';
-    const CRON_MODEL_PATH = 'crontab/unexpected/jobs/unexpected_webp_convert/run/model';
+    const CRON_STRING_PATH = 'crontab/greenrivers/jobs/greenrivers_webp_convert/schedule/cron_expr';
+    const CRON_MODEL_PATH = 'crontab/greenrivers/jobs/greenrivers_webp_convert/run/model';
 
     /** @var ConfigValueFactory */
     private $configValueFactory;

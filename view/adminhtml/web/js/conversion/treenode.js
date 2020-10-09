@@ -1,7 +1,7 @@
 /**
- * @author Unexpected Team
- * @copyright Copyright (c) 2020 Unexpected
- * @package Unexpected_Webp
+ * @author GreenRivers Team
+ * @copyright Copyright (c) 2020 GreenRivers
+ * @package GreenRivers_Webp
  */
 define([
     'jquery',
@@ -12,7 +12,7 @@ define([
     'use strict';
 
     let treeInstance;
-    const url = `${location.origin}/admin/unexpected_webp/conversion/treenode`;
+    const url = `${location.origin}/admin/greenrivers_webp/conversion/treenode`;
     const index = location.pathname.includes('cron') ? 'cron_folders' : 'conversion_folders';
 
     $("#folder-tree").folderTree({

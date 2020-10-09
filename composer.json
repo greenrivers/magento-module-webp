@@ -1,11 +1,11 @@
 {
-    "name": "unexpected/webp",
-    "description": "Unexpected Webp",
+    "name": "greenrivers/webp",
+    "description": "GreenRivers Webp",
     "minimum-stability": "stable",
     "authors": [
         {
-            "name": "Unexpected team",
-            "email": "support@unexpected.com"
+            "name": "GreenRivers team",
+            "email": "support@greenrivers.it"
         }
     ],
     "require": {
@@ -22,7 +22,7 @@
             "registration.php"
         ],
         "psr-4": {
-            "Unexpected\\Webp\\": ""
+            "GreenRivers\\Webp\\": ""
         }
     }
 }

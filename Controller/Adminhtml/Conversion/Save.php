@@ -1,17 +1,17 @@
 <?php
 /**
- * @author Unexpected Team
- * @copyright Copyright (c) 2020 Unexpected
- * @package Unexpected_Webp
+ * @author GreenRivers Team
+ * @copyright Copyright (c) 2020 GreenRivers
+ * @package GreenRivers_Webp
  */
 
-namespace Unexpected\Webp\Controller\Adminhtml\Conversion;
+namespace GreenRivers\Webp\Controller\Adminhtml\Conversion;
 
 use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
 use Magento\Framework\App\Cache\TypeListInterface;
-use Unexpected\Webp\Helper\Config;
-use Unexpected\Webp\Helper\Cron;
+use GreenRivers\Webp\Helper\Config;
+use GreenRivers\Webp\Helper\Cron;
 
 class Save extends Action
 {

@@ -1,11 +1,11 @@
 <?php
 /**
- * @author Unexpected Team
- * @copyright Copyright (c) 2020 Unexpected
- * @package Unexpected_Webp
+ * @author GreenRivers Team
+ * @copyright Copyright (c) 2020 GreenRivers
+ * @package GreenRivers_Webp
  */
 
-namespace Unexpected\Webp\Test\Unit\Helper;
+namespace GreenRivers\Webp\Test\Unit\Helper;
 
 use Magento\Framework\Filesystem;
 use Magento\Framework\Filesystem\Directory\ReadInterface;
@@ -13,10 +13,10 @@ use Magento\Framework\Filesystem\Driver\File;
 use PHPUnit\Framework\TestCase;
 use PHPUnit_Framework_MockObject_MockObject;
 use Psr\Log\LoggerInterface;
-use Unexpected\Webp\Helper\Config;
-use Unexpected\Webp\Helper\Image;
-use Unexpected\Webp\Test\Unit\Traits\TraitObjectManager;
-use Unexpected\Webp\Test\Unit\Traits\TraitReflectionClass;
+use GreenRivers\Webp\Helper\Config;
+use GreenRivers\Webp\Helper\Image;
+use GreenRivers\Webp\Test\Unit\Traits\TraitObjectManager;
+use GreenRivers\Webp\Test\Unit\Traits\TraitReflectionClass;
 
 class ImageTest extends TestCase
 {
@@ -68,7 +68,7 @@ class ImageTest extends TestCase
      */
     public function testChangePath()
     {
-        $webpDirPath = '/var/www/magento2/pub/media/unexpected/webp/catalog/product/image.webp';
+        $webpDirPath = '/var/www/magento2/pub/media/greenrivers/webp/catalog/product/image.webp';
 
         $readMock = $this->getMockBuilder(ReadInterface::class)
             ->disableOriginalConstructor()

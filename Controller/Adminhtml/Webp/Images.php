@@ -1,16 +1,16 @@
 <?php
 /**
- * @author Unexpected Team
- * @copyright Copyright (c) 2020 Unexpected
- * @package Unexpected_Webp
+ * @author GreenRivers Team
+ * @copyright Copyright (c) 2020 GreenRivers
+ * @package GreenRivers_Webp
  */
 
-namespace Unexpected\Webp\Controller\Adminhtml\Webp;
+namespace GreenRivers\Webp\Controller\Adminhtml\Webp;
 
 use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
 use Magento\Framework\Controller\Result\JsonFactory;
-use Unexpected\Webp\Helper\Process;
+use GreenRivers\Webp\Helper\Process;
 
 class Images extends Action
 {

@@ -1,16 +1,16 @@
 <?php
 /**
- * @author Unexpected Team
- * @copyright Copyright (c) 2020 Unexpected
- * @package Unexpected_Webp
+ * @author GreenRivers Team
+ * @copyright Copyright (c) 2020 GreenRivers
+ * @package GreenRivers_Webp
  */
 
-namespace Unexpected\Webp\Controller\Adminhtml\Conversion;
+namespace GreenRivers\Webp\Controller\Adminhtml\Conversion;
 
 use Magento\Framework\App\Action\Action;
 use Magento\Framework\App\Action\Context;
 use Magento\Framework\Controller\Result\JsonFactory;
-use Unexpected\Webp\Helper\TreeNodes;
+use GreenRivers\Webp\Helper\TreeNodes;
 
 class TreeNode extends Action
 {

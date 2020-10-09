@@ -1,16 +1,16 @@
 <?xml version="1.0" ?>
 <!--
 /**
- * @author Unexpected Team
- * @copyright Copyright (c) 2020 Unexpected
- * @package Unexpected_Webp
+ * @author GreenRivers Team
+ * @copyright Copyright (c) 2020 GreenRivers
+ * @package GreenRivers_Webp
  */
 -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Cron:etc/crontab.xsd">
-    <group id="unexpected">
-        <job instance="Unexpected\Webp\Cron\Convert" method="execute" name="unexpected_webp_convert">
-            <config_path>crontab/unexpected/jobs/unexpected_webp_convert/schedule/cron_expr</config_path>
+    <group id="greenrivers">
+        <job instance="GreenRivers\Webp\Cron\Convert" method="execute" name="greenrivers_webp_convert">
+            <config_path>crontab/greenrivers/jobs/greenrivers_webp_convert/schedule/cron_expr</config_path>
         </job>
     </group>
 </config>

@@ -1,16 +1,16 @@
 <?xml version="1.0"?>
 <!--
 /**
- * @author Unexpected Team
- * @copyright Copyright (c) 2020 Unexpected
- * @package Unexpected_Webp
+ * @author GreenRivers Team
+ * @copyright Copyright (c) 2020 GreenRivers
+ * @package GreenRivers_Webp
  */
 -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:framework:App/etc/routes.xsd">
     <router id="admin">
-        <route id="unexpected_webp" frontName="unexpected_webp">
-            <module name="Unexpected_Webp"/>
+        <route id="greenrivers_webp" frontName="greenrivers_webp">
+            <module name="GreenRivers_Webp"/>
         </route>
     </router>
 </config>

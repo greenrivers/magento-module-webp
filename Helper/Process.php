@@ -1,11 +1,11 @@
 <?php
 /**
- * @author Unexpected Team
- * @copyright Copyright (c) 2020 Unexpected
- * @package Unexpected_Webp
+ * @author GreenRivers Team
+ * @copyright Copyright (c) 2020 GreenRivers
+ * @package GreenRivers_Webp
  */
 
-namespace Unexpected\Webp\Helper;
+namespace GreenRivers\Webp\Helper;
 
 use Magento\Framework\App\Filesystem\DirectoryList;
 use Magento\Framework\Exception\FileSystemException;
@@ -20,7 +20,7 @@ class Process
     const INCREMENT = 100;
 
     const MEDIA_PATH = 'pub/media';
-    const WEBP_PATH = 'unexpected/webp';
+    const WEBP_PATH = 'greenrivers/webp';
 
     /** @var Filesystem */
     private $filesystem;

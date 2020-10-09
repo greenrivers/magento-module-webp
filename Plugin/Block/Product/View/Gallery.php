@@ -1,15 +1,15 @@
 <?php
 /**
- * @author Unexpected Team
- * @copyright Copyright (c) 2020 Unexpected
- * @package Unexpected_Webp
+ * @author GreenRivers Team
+ * @copyright Copyright (c) 2020 GreenRivers
+ * @package GreenRivers_Webp
  */
 
-namespace Unexpected\Webp\Plugin\Block\Product\View;
+namespace GreenRivers\Webp\Plugin\Block\Product\View;
 
 use Magento\Catalog\Block\Product\View\Gallery as Subject;
 use Magento\Framework\Data\Collection;
-use Unexpected\Webp\Helper\Image;
+use GreenRivers\Webp\Helper\Image;
 
 class Gallery
 {

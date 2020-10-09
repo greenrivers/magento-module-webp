@@ -1,11 +1,11 @@
 <?php
 /**
- * @author Unexpected Team
- * @copyright Copyright (c) 2020 Unexpected
- * @package Unexpected_Webp
+ * @author GreenRivers Team
+ * @copyright Copyright (c) 2020 GreenRivers
+ * @package GreenRivers_Webp
  */
 
-namespace Unexpected\Webp\Observer;
+namespace GreenRivers\Webp\Observer;
 
 use Magento\Catalog\Api\Data\ProductInterface;
 use Magento\Framework\App\Filesystem\DirectoryList;
@@ -13,8 +13,8 @@ use Magento\Framework\Event\Observer;
 use Magento\Framework\Event\ObserverInterface;
 use Magento\Framework\Filesystem;
 use Symfony\Component\Finder\Finder;
-use Unexpected\Webp\Helper\Config;
-use Unexpected\Webp\Helper\Process;
+use GreenRivers\Webp\Helper\Config;
+use GreenRivers\Webp\Helper\Process;
 
 class ConvertProductImages implements ObserverInterface
 {

@@ -1,7 +1,7 @@
 /**
- * @author Unexpected Team
- * @copyright Copyright (c) 2020 Unexpected
- * @package Unexpected_Webp
+ * @author GreenRivers Team
+ * @copyright Copyright (c) 2020 GreenRivers
+ * @package GreenRivers_Webp
  */
 
 define([
@@ -16,7 +16,7 @@ define([
 
     return AbstractElement.extend({
         defaults: {
-            template: 'Unexpected_Webp/form/element/progressbar',
+            template: 'GreenRivers_Webp/form/element/progressbar',
             value: ko.observable(0),
             isDone: ko.observable(true)
         },
@@ -38,7 +38,7 @@ define([
             let errorImages = 0;
 
             $.post(
-                location.origin + '/admin/unexpected_webp/webp/images',
+                location.origin + '/admin/greenrivers_webp/webp/images',
                 {
                     form_key: window.FORM_KEY,
                     extensions: extensions.value(),
@@ -54,7 +54,7 @@ define([
 
             function process() {
                 $.post(
-                    location.origin + '/admin/unexpected_webp/webp/convert',
+                    location.origin + '/admin/greenrivers_webp/webp/convert',
                     {
                         form_key: window.FORM_KEY,
                         extensions: extensions.value(),

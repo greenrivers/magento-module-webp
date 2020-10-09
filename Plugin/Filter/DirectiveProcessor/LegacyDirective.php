@@ -1,15 +1,15 @@
 <?php
 /**
- * @author Unexpected Team
- * @copyright Copyright (c) 2020 Unexpected
- * @package Unexpected_Webp
+ * @author GreenRivers Team
+ * @copyright Copyright (c) 2020 GreenRivers
+ * @package GreenRivers_Webp
  */
 
-namespace Unexpected\Webp\Plugin\Filter\DirectiveProcessor;
+namespace GreenRivers\Webp\Plugin\Filter\DirectiveProcessor;
 
 use Magento\Framework\App\Filesystem\DirectoryList;
 use Magento\Framework\Filter\DirectiveProcessor\LegacyDirective as Subject;
-use Unexpected\Webp\Helper\Image;
+use GreenRivers\Webp\Helper\Image;
 
 class LegacyDirective
 {

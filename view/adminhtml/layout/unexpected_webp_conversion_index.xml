@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <!--
 /**
- * @author Unexpected Team
- * @copyright Copyright (c) 2020 Unexpected
- * @package Unexpected_Webp
+ * @author GreenRivers Team
+ * @copyright Copyright (c) 2020 GreenRivers
+ * @package GreenRivers_Webp
  */
 -->
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -11,8 +11,8 @@
       layout="admin-2columns-left">
     <body>
         <referenceContainer name="left">
-            <block class="Unexpected\Webp\Block\Adminhtml\Conversion\Tree" name="webp_catalog.tree"
-                   template="Unexpected_Webp::conversion/tree.phtml"/>
+            <block class="GreenRivers\Webp\Block\Adminhtml\Conversion\Tree" name="webp_catalog.tree"
+                   template="GreenRivers_Webp::conversion/tree.phtml"/>
         </referenceContainer>
         <referenceContainer name="content">
             <uiComponent name="webp_form"/>

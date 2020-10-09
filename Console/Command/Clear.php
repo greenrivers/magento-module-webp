@@ -1,17 +1,17 @@
 <?php
 /**
- * @author Unexpected Team
- * @copyright Copyright (c) 2020 Unexpected
- * @package Unexpected_Webp
+ * @author GreenRivers Team
+ * @copyright Copyright (c) 2020 GreenRivers
+ * @package GreenRivers_Webp
  */
 
-namespace Unexpected\Webp\Console\Command;
+namespace GreenRivers\Webp\Console\Command;
 
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Helper\ProgressBar;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use Unexpected\Webp\Helper\Process;
+use GreenRivers\Webp\Helper\Process;
 
 class Clear extends Command
 {
@@ -35,7 +35,7 @@ class Clear extends Command
      */
     protected function configure()
     {
-        $this->setName('unexpected:webp:clear');
+        $this->setName('greenrivers:webp:clear');
         $this->setDescription('Remove all webp images');
 
         parent::configure();

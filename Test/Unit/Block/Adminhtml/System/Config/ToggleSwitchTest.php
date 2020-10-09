@@ -1,20 +1,20 @@
 <?php
 /**
- * @author Unexpected Team
- * @copyright Copyright (c) 2020 Unexpected
- * @package Unexpected_Webp
+ * @author GreenRivers Team
+ * @copyright Copyright (c) 2020 GreenRivers
+ * @package GreenRivers_Webp
  */
 
-namespace Unexpected\Webp\Test\Unit\Block\Adminhtml\System\Config;
+namespace GreenRivers\Webp\Test\Unit\Block\Adminhtml\System\Config;
 
 use Magento\Framework\Data\Form\Element\AbstractElement;
 use PHPUnit\Framework\Constraint\IsType;
 use PHPUnit\Framework\TestCase;
 use PHPUnit_Framework_MockObject_MockObject;
-use Unexpected\Webp\Block\Adminhtml\System\Config\ToggleSwitch;
-use Unexpected\Webp\Helper\Config;
-use Unexpected\Webp\Test\Unit\Traits\TraitObjectManager;
-use Unexpected\Webp\Test\Unit\Traits\TraitReflectionClass;
+use GreenRivers\Webp\Block\Adminhtml\System\Config\ToggleSwitch;
+use GreenRivers\Webp\Helper\Config;
+use GreenRivers\Webp\Test\Unit\Traits\TraitObjectManager;
+use GreenRivers\Webp\Test\Unit\Traits\TraitReflectionClass;
 
 class ToggleSwitchTest extends TestCase
 {

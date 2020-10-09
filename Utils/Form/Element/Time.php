@@ -1,11 +1,11 @@
 <?php
 /**
- * @author Unexpected Team
- * @copyright Copyright (c) 2020 Unexpected
- * @package Unexpected_Webp
+ * @author GreenRivers Team
+ * @copyright Copyright (c) 2020 GreenRivers
+ * @package GreenRivers_Webp
  */
 
-namespace Unexpected\Webp\Utils\Form\Element;
+namespace GreenRivers\Webp\Utils\Form\Element;
 
 class Time extends \Magento\Framework\Data\Form\Element\Time
 {
