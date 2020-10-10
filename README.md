@@ -8,6 +8,7 @@ Magento2 module for images conversion to webp format.
 * Cwebp >= **0.5.2**
 * libvips >= **8.4.5**
 * Magento >= **2.3.2**
+* Memory limit >= **8GB**
 
 ## Installation
 
@@ -57,6 +58,14 @@ Magento2 module for images conversion to webp format.
     
     php bin/magento setup:static-content:deploy -f
     ```
+
+4. Memory limit
+
+    Increase PHP memory limit to minimum 8GB.
+    
+    To achieve this add in app/bootstrap.php:
+    
+    ```php ini_set('memory_limit', '8192M');```
 
 ## Usage
 

@@ -70,17 +70,21 @@ class Converter
         $imageData = $this->file->getPathInfo($imagePath);
 
         if ($imageData['extension'] === self::PNG_EXTENSION) {
-            $image = imagecreatefrompng($imagePath);
-            imagepalettetotruecolor($image);
-            imagealphablending($image, true);
-            imagesavealpha($image, true);
+            $image = @imagecreatefrompng($imagePath);
+            @imagepalettetotruecolor($image);
+            @imagealphablending($image, true);
+            @imagesavealpha($image, true);
         } else {
-            $image = imagecreatefromstring(file_get_contents($imagePath));
+            $image = @imagecreatefromstring(file_get_contents($imagePath));
         }
 
-        ob_start();
-        $result = imagewebp($image, $webpPath, $this->config->getQualityConfig());
-        ob_get_clean();
+        if ($image) {
+            ob_start();
+            $result = @imagewebp($image, $webpPath, $this->config->getQualityConfig());
+            ob_get_clean();
+        } else {
+            $result = false;
+        }
 
         return $result;
     }

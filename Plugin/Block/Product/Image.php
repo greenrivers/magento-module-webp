@@ -30,7 +30,7 @@ class Image
      * @param string $method
      * @return string
      */
-    public function after__call(Subject $subject, $result, string $method): string
+    public function after__call(Subject $subject, $result, string $method)
     {
         if ($method == 'getImageUrl' && $subject->getProductId() > 0) {
             $result = $this->imageHelper->changePath($result);

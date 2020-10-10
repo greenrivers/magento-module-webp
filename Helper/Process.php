@@ -17,7 +17,7 @@ use Symfony\Component\Finder\Finder;
 
 class Process
 {
-    const INCREMENT = 100;
+    const INCREMENT = 1000;
 
     const MEDIA_PATH = 'pub/media';
     const WEBP_PATH = 'greenrivers/webp';
@@ -85,6 +85,9 @@ class Process
         } else if ($folders[0] === 'root') {
             $folders = $mediaPath;
         } else {
+            $folders = array_filter($folders, function($folder) {
+                return $folder;
+            });
             array_walk($folders, function (&$folder) use ($mediaPath) {
                 $folder = $mediaPath . $folder;
             });
