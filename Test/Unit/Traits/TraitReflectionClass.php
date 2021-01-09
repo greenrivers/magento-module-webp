@@ -1,11 +1,11 @@
 <?php
 /**
- * @author GreenRivers Team
- * @copyright Copyright (c) 2020 GreenRivers
- * @package GreenRivers_Webp
+ * @author Greenrivers Team
+ * @copyright Copyright (c) 2021 Greenrivers
+ * @package Greenrivers_Webp
  */
 
-namespace GreenRivers\Webp\Test\Unit\Traits;
+namespace Greenrivers\Webp\Test\Unit\Traits;
 
 use ReflectionClass;
 use ReflectionException;

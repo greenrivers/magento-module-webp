@@ -1,15 +1,15 @@
 <?php
 /**
- * @author GreenRivers Team
- * @copyright Copyright (c) 2020 GreenRivers
- * @package GreenRivers_Webp
+ * @author Greenrivers Team
+ * @copyright Copyright (c) 2021 Greenrivers
+ * @package Greenrivers_Webp
  */
 
-namespace GreenRivers\Webp\Plugin\Filter\DirectiveProcessor;
+namespace Greenrivers\Webp\Plugin\Filter\DirectiveProcessor;
 
 use Magento\Framework\App\Filesystem\DirectoryList;
 use Magento\Framework\Filter\DirectiveProcessor\LegacyDirective as Subject;
-use GreenRivers\Webp\Helper\Image;
+use Greenrivers\Webp\Helper\Image;
 
 class LegacyDirective
 {

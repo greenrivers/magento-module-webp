@@ -1,7 +1,7 @@
 /**
- * @author GreenRivers Team
- * @copyright Copyright (c) 2020 GreenRivers
- * @package GreenRivers_Webp
+ * @author Greenrivers Team
+ * @copyright Copyright (c) 2021 Greenrivers
+ * @package Greenrivers_Webp
  */
 
 define([
@@ -16,7 +16,7 @@ define([
 
     return AbstractElement.extend({
         defaults: {
-            template: 'GreenRivers_Webp/form/element/progressbar',
+            template: 'Greenrivers_Webp/form/element/progressbar',
             value: ko.observable(0),
             isDone: ko.observable(true)
         },

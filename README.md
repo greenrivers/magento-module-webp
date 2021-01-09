@@ -1,4 +1,4 @@
-# GreenRivers Webp
+# Greenrivers Webp
 
 Magento2 module for images conversion to webp format.
 
@@ -7,7 +7,7 @@ Magento2 module for images conversion to webp format.
 * PHP >= **7.1**
 * Cwebp >= **0.5.2**
 * libvips >= **8.4.5**
-* Magento >= **2.3.2**
+* Magento = **2.3.***
 * Memory limit >= **8GB**
 
 ## Installation
@@ -47,9 +47,7 @@ Magento2 module for images conversion to webp format.
 
 3. Module
 
-    ```php
-    composer require greenrivers/webp
-    
+    ```shell    
     php bin/magento module:enable greenrivers/webp
     
     php bin/magento setup:upgrade

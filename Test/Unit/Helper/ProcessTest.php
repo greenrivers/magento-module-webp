@@ -1,11 +1,11 @@
 <?php
 /**
- * @author GreenRivers Team
- * @copyright Copyright (c) 2020 GreenRivers
- * @package GreenRivers_Webp
+ * @author Greenrivers Team
+ * @copyright Copyright (c) 2021 Greenrivers
+ * @package Greenrivers_Webp
  */
 
-namespace GreenRivers\Webp\Test\Unit\Helper;
+namespace Greenrivers\Webp\Test\Unit\Helper;
 
 use ArrayObject;
 use Magento\Framework\Filesystem;
@@ -17,11 +17,11 @@ use PHPUnit_Framework_MockObject_MockObject;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Finder\SplFileInfo;
-use GreenRivers\Webp\Helper\Converter;
-use GreenRivers\Webp\Helper\Image;
-use GreenRivers\Webp\Helper\Process;
-use GreenRivers\Webp\Test\Unit\Traits\TraitObjectManager;
-use GreenRivers\Webp\Test\Unit\Traits\TraitReflectionClass;
+use Greenrivers\Webp\Helper\Converter;
+use Greenrivers\Webp\Helper\Image;
+use Greenrivers\Webp\Helper\Process;
+use Greenrivers\Webp\Test\Unit\Traits\TraitObjectManager;
+use Greenrivers\Webp\Test\Unit\Traits\TraitReflectionClass;
 
 class ProcessTest extends TestCase
 {

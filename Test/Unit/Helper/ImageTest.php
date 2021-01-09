@@ -1,11 +1,11 @@
 <?php
 /**
- * @author GreenRivers Team
- * @copyright Copyright (c) 2020 GreenRivers
- * @package GreenRivers_Webp
+ * @author Greenrivers Team
+ * @copyright Copyright (c) 2021 Greenrivers
+ * @package Greenrivers_Webp
  */
 
-namespace GreenRivers\Webp\Test\Unit\Helper;
+namespace Greenrivers\Webp\Test\Unit\Helper;
 
 use Magento\Framework\Filesystem;
 use Magento\Framework\Filesystem\Directory\ReadInterface;
@@ -13,10 +13,10 @@ use Magento\Framework\Filesystem\Driver\File;
 use PHPUnit\Framework\TestCase;
 use PHPUnit_Framework_MockObject_MockObject;
 use Psr\Log\LoggerInterface;
-use GreenRivers\Webp\Helper\Config;
-use GreenRivers\Webp\Helper\Image;
-use GreenRivers\Webp\Test\Unit\Traits\TraitObjectManager;
-use GreenRivers\Webp\Test\Unit\Traits\TraitReflectionClass;
+use Greenrivers\Webp\Helper\Config;
+use Greenrivers\Webp\Helper\Image;
+use Greenrivers\Webp\Test\Unit\Traits\TraitObjectManager;
+use Greenrivers\Webp\Test\Unit\Traits\TraitReflectionClass;
 
 class ImageTest extends TestCase
 {

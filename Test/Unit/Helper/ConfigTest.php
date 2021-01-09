@@ -1,18 +1,18 @@
 <?php
 /**
- * @author GreenRivers Team
- * @copyright Copyright (c) 2020 GreenRivers
- * @package GreenRivers_Webp
+ * @author Greenrivers Team
+ * @copyright Copyright (c) 2021 Greenrivers
+ * @package Greenrivers_Webp
  */
 
-namespace GreenRivers\Webp\Test\Unit\Helper;
+namespace Greenrivers\Webp\Test\Unit\Helper;
 
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use PHPUnit\Framework\Constraint\IsType;
 use PHPUnit\Framework\TestCase;
 use PHPUnit_Framework_MockObject_MockObject;
-use GreenRivers\Webp\Helper\Config;
-use GreenRivers\Webp\Test\Unit\Traits\TraitObjectManager;
+use Greenrivers\Webp\Helper\Config;
+use Greenrivers\Webp\Test\Unit\Traits\TraitObjectManager;
 
 class ConfigTest extends TestCase
 {

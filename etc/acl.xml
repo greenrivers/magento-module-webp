@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <!--
 /**
- * @author GreenRivers Team
- * @copyright Copyright (c) 2020 GreenRivers
- * @package GreenRivers_Webp
+ * @author Greenrivers Team
+ * @copyright Copyright (c) 2021 Greenrivers
+ * @package Greenrivers_Webp
  */
 -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -12,14 +12,14 @@
         <resources>
             <resource id="Magento_Backend::admin">
                 <resource id="Magento_Backend::content">
-                    <resource id="GreenRivers_Webp::webp" title="GreenRivers Webp">
-                        <resource id="GreenRivers_Webp::convert" title="GreenRivers Webp Conversion"/>
+                    <resource id="Greenrivers_Webp::webp" title="Greenrivers Webp">
+                        <resource id="Greenrivers_Webp::convert" title="Greenrivers Webp Conversion"/>
                     </resource>
                 </resource>
                 <resource id="Magento_Backend::stores">
                     <resource id="Magento_Backend::stores_settings">
                         <resource id="Magento_Config::config">
-                            <resource id="GreenRivers_Webp::config" title="GreenRivers Webp Config"/>
+                            <resource id="Greenrivers_Webp::config" title="Greenrivers Webp Config"/>
                         </resource>
                     </resource>
                 </resource>

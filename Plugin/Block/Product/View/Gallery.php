@@ -1,15 +1,15 @@
 <?php
 /**
- * @author GreenRivers Team
- * @copyright Copyright (c) 2020 GreenRivers
- * @package GreenRivers_Webp
+ * @author Greenrivers Team
+ * @copyright Copyright (c) 2021 Greenrivers
+ * @package Greenrivers_Webp
  */
 
-namespace GreenRivers\Webp\Plugin\Block\Product\View;
+namespace Greenrivers\Webp\Plugin\Block\Product\View;
 
 use Magento\Catalog\Block\Product\View\Gallery as Subject;
 use Magento\Framework\Data\Collection;
-use GreenRivers\Webp\Helper\Image;
+use Greenrivers\Webp\Helper\Image;
 
 class Gallery
 {

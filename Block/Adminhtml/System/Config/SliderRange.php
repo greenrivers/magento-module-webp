@@ -1,21 +1,21 @@
 <?php
 /**
- * @author GreenRivers Team
- * @copyright Copyright (c) 2020 GreenRivers
- * @package GreenRivers_Webp
+ * @author Greenrivers Team
+ * @copyright Copyright (c) 2021 Greenrivers
+ * @package Greenrivers_Webp
  */
 
-namespace GreenRivers\Webp\Block\Adminhtml\System\Config;
+namespace Greenrivers\Webp\Block\Adminhtml\System\Config;
 
 use Magento\Backend\Block\Template\Context;
 use Magento\Config\Block\System\Config\Form\Field;
 use Magento\Framework\Data\Form\Element\AbstractElement;
-use GreenRivers\Webp\Helper\Config;
+use Greenrivers\Webp\Helper\Config;
 
 class SliderRange extends Field
 {
     /** @var string */
-    protected $_template = 'GreenRivers_Webp::system/config/slider_range.phtml';
+    protected $_template = 'Greenrivers_Webp::system/config/slider_range.phtml';
 
     /** @var Config */
     private $config;

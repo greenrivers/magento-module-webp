@@ -1,77 +1,77 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 /**
- * @author GreenRivers Team
- * @copyright Copyright (c) 2020 GreenRivers
- * @package GreenRivers_Webp
+ * @author Greenrivers Team
+ * @copyright Copyright (c) 2021 Greenrivers
+ * @package Greenrivers_Webp
  */
 -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
-    <virtualType name="GreenRivers\Webp\Logger\Handler" type="Magento\Framework\Logger\Handler\Base">
+    <virtualType name="Greenrivers\Webp\Logger\Handler" type="Magento\Framework\Logger\Handler\Base">
         <arguments>
             <argument name="filesystem" xsi:type="object">Magento\Framework\Filesystem\Driver\File</argument>
             <argument name="fileName" xsi:type="string">/var/log/greenrivers/webp.log</argument>
         </arguments>
     </virtualType>
-    <virtualType name="GreenRivers\Webp\Logger" type="Magento\Framework\Logger\Monolog">
+    <virtualType name="Greenrivers\Webp\Logger" type="Magento\Framework\Logger\Monolog">
         <arguments>
-            <argument name="name" xsi:type="string">GreenRivers_Webp Logger</argument>
+            <argument name="name" xsi:type="string">Greenrivers_Webp Logger</argument>
             <argument name="handlers" xsi:type="array">
-                <item name="debug" xsi:type="object">GreenRivers\Webp\Logger\Handler</item>
+                <item name="debug" xsi:type="object">Greenrivers\Webp\Logger\Handler</item>
             </argument>
         </arguments>
     </virtualType>
 
-    <type name="GreenRivers\Webp\Block\Adminhtml\Conversion\Tree">
+    <type name="Greenrivers\Webp\Block\Adminhtml\Conversion\Tree">
         <arguments>
-            <argument name="_logger" xsi:type="object">GreenRivers\Webp\Logger</argument>
+            <argument name="_logger" xsi:type="object">Greenrivers\Webp\Logger</argument>
         </arguments>
     </type>
-    <type name="GreenRivers\Webp\Cron\Convert">
+    <type name="Greenrivers\Webp\Cron\Convert">
         <arguments>
-            <argument name="logger" xsi:type="object">GreenRivers\Webp\Logger</argument>
+            <argument name="logger" xsi:type="object">Greenrivers\Webp\Logger</argument>
         </arguments>
     </type>
-    <type name="GreenRivers\Webp\Helper\Converter">
+    <type name="Greenrivers\Webp\Helper\Converter">
         <arguments>
-            <argument name="logger" xsi:type="object">GreenRivers\Webp\Logger</argument>
+            <argument name="logger" xsi:type="object">Greenrivers\Webp\Logger</argument>
         </arguments>
     </type>
-    <type name="GreenRivers\Webp\Helper\Cron">
+    <type name="Greenrivers\Webp\Helper\Cron">
         <arguments>
-            <argument name="logger" xsi:type="object">GreenRivers\Webp\Logger</argument>
+            <argument name="logger" xsi:type="object">Greenrivers\Webp\Logger</argument>
         </arguments>
     </type>
-    <type name="GreenRivers\Webp\Helper\Image">
+    <type name="Greenrivers\Webp\Helper\Image">
         <arguments>
-            <argument name="logger" xsi:type="object">GreenRivers\Webp\Logger</argument>
+            <argument name="logger" xsi:type="object">Greenrivers\Webp\Logger</argument>
         </arguments>
     </type>
-    <type name="GreenRivers\Webp\Helper\Process">
+    <type name="Greenrivers\Webp\Helper\Process">
         <arguments>
-            <argument name="logger" xsi:type="object">GreenRivers\Webp\Logger</argument>
+            <argument name="logger" xsi:type="object">Greenrivers\Webp\Logger</argument>
         </arguments>
     </type>
-    <type name="GreenRivers\Webp\Helper\TreeNodes">
+    <type name="Greenrivers\Webp\Helper\TreeNodes">
         <arguments>
-            <argument name="logger" xsi:type="object">GreenRivers\Webp\Logger</argument>
+            <argument name="logger" xsi:type="object">Greenrivers\Webp\Logger</argument>
         </arguments>
     </type>
 
     <type name="Magento\Framework\Filter\DirectiveProcessor\LegacyDirective">
-        <plugin name="GreenRivers_Webp::Filter_LegacyDirective"
-                type="GreenRivers\Webp\Plugin\Filter\DirectiveProcessor\LegacyDirective"/>
+        <plugin name="Greenrivers_Webp::Filter_LegacyDirective"
+                type="Greenrivers\Webp\Plugin\Filter\DirectiveProcessor\LegacyDirective"/>
     </type>
 
     <type name="Magento\Framework\Console\CommandListInterface">
         <arguments>
             <argument name="commands" xsi:type="array">
                 <item name="greenrivers_webp_convert_command" xsi:type="object">
-                    GreenRivers\Webp\Console\Command\Convert
+                    Greenrivers\Webp\Console\Command\Convert
                 </item>
                 <item name="greenrivers_webp_clear_command" xsi:type="object">
-                    GreenRivers\Webp\Console\Command\Clear
+                    Greenrivers\Webp\Console\Command\Clear
                 </item>
             </argument>
         </arguments>

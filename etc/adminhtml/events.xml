@@ -1,15 +1,15 @@
 <?xml version="1.0"?>
 <!--
 /**
- * @author GreenRivers Team
- * @copyright Copyright (c) 2020 GreenRivers
- * @package GreenRivers_Webp
+ * @author Greenrivers Team
+ * @copyright Copyright (c) 2021 Greenrivers
+ * @package Greenrivers_Webp
  */
 -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
     <event name="catalog_product_save_after">
         <observer name="greenrivers_webp_convert_product_images"
-                  instance="GreenRivers\Webp\Observer\ConvertProductImages"/>
+                  instance="Greenrivers\Webp\Observer\ConvertProductImages"/>
     </event>
 </config>

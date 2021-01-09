@@ -1,10 +1,10 @@
 {
     "name": "greenrivers/webp",
-    "description": "GreenRivers Webp",
+    "description": "Greenrivers Webp",
     "minimum-stability": "stable",
     "authors": [
         {
-            "name": "GreenRivers team",
+            "name": "Greenrivers team",
             "email": "support@greenrivers.it"
         }
     ],
@@ -22,7 +22,7 @@
             "registration.php"
         ],
         "psr-4": {
-            "GreenRivers\\Webp\\": ""
+            "Greenrivers\\Webp\\": ""
         }
     }
 }

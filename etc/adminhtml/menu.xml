@@ -1,27 +1,27 @@
 <?xml version="1.0"?>
 <!--
 /**
- * @author GreenRivers Team
- * @copyright Copyright (c) 2020 GreenRivers
- * @package GreenRivers_Webp
+ * @author Greenrivers Team
+ * @copyright Copyright (c) 2021 Greenrivers
+ * @package Greenrivers_Webp
  */
 -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
     <menu>
-        <add id="GreenRivers_Webp::webp"
-             title="GreenRivers Webp"
+        <add id="Greenrivers_Webp::webp"
+             title="Greenrivers Webp"
              module="Magento_Backend"
              sortOrder="30"
              parent="Magento_Backend::content"
-             resource="GreenRivers_Webp::webp"/>
+             resource="Greenrivers_Webp::webp"/>
 
-        <add id="GreenRivers_Webp::convert"
+        <add id="Greenrivers_Webp::convert"
              title="Conversion"
-             module="GreenRivers_Webp"
+             module="Greenrivers_Webp"
              sortOrder="10"
-             parent="GreenRivers_Webp::webp"
+             parent="Greenrivers_Webp::webp"
              action="greenrivers_webp/conversion"
-             resource="GreenRivers_Webp::convert"/>
+             resource="Greenrivers_Webp::convert"/>
     </menu>
 </config>

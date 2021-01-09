@@ -1,7 +1,7 @@
 /**
- * @author GreenRivers Team
- * @copyright Copyright (c) 2020 GreenRivers
- * @package GreenRivers_Webp
+ * @author Greenrivers Team
+ * @copyright Copyright (c) 2021 Greenrivers
+ * @package Greenrivers_Webp
  */
 
 define([
@@ -14,7 +14,7 @@ define([
 
     return Component.extend({
         defaults: {
-            template: 'GreenRivers_Webp/system/config/toggle_switch',
+            template: 'Greenrivers_Webp/system/config/toggle_switch',
             text: ko.observable('Yes'),
             isChecked: ko.observable(true)
         },
