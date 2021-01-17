@@ -11,7 +11,7 @@ use Magento\Framework\Filesystem;
 use Magento\Framework\Filesystem\Directory\ReadInterface;
 use Magento\Framework\Filesystem\Driver\File;
 use PHPUnit\Framework\TestCase;
-use PHPUnit_Framework_MockObject_MockObject;
+use PHPUnit\Framework\MockObject\MockObject;
 use Psr\Log\LoggerInterface;
 use Greenrivers\Webp\Helper\Config;
 use Greenrivers\Webp\Helper\Image;
@@ -26,19 +26,19 @@ class ImageTest extends TestCase
     /** @var Image */
     private $image;
 
-    /** @var Config|PHPUnit_Framework_MockObject_MockObject */
+    /** @var Config|MockObject */
     private $configMock;
 
-    /** @var File|PHPUnit_Framework_MockObject_MockObject */
+    /** @var File|MockObject */
     private $fileMock;
 
-    /** @var Filesystem|PHPUnit_Framework_MockObject_MockObject */
+    /** @var Filesystem|MockObject */
     private $filesystemMock;
 
-    /** @var LoggerInterface|PHPUnit_Framework_MockObject_MockObject */
+    /** @var LoggerInterface|MockObject */
     private $loggerMock;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->configMock = $this->getMockBuilder(Config::class)
             ->disableOriginalConstructor()

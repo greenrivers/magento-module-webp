@@ -11,9 +11,8 @@ use ArrayObject;
 use Magento\Framework\Filesystem;
 use Magento\Framework\Filesystem\Directory\ReadInterface;
 use Magento\Framework\Filesystem\Driver\File;
-use PHPUnit\Framework\Constraint\IsType;
 use PHPUnit\Framework\TestCase;
-use PHPUnit_Framework_MockObject_MockObject;
+use PHPUnit\Framework\MockObject\MockObject;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Finder\SplFileInfo;
@@ -31,25 +30,25 @@ class ProcessTest extends TestCase
     /** @var Process */
     private $process;
 
-    /** @var Filesystem|PHPUnit_Framework_MockObject_MockObject */
+    /** @var Filesystem|MockObject */
     private $filesystemMock;
 
-    /** @var Finder|PHPUnit_Framework_MockObject_MockObject */
+    /** @var Finder|MockObject */
     private $finderMock;
 
-    /** @var File|PHPUnit_Framework_MockObject_MockObject */
+    /** @var File|MockObject */
     private $fileMock;
 
-    /** @var Converter|PHPUnit_Framework_MockObject_MockObject */
+    /** @var Converter|MockObject */
     private $converterMock;
 
-    /** @var Image|PHPUnit_Framework_MockObject_MockObject */
+    /** @var Image|MockObject */
     private $imageMock;
 
-    /** @var LoggerInterface|PHPUnit_Framework_MockObject_MockObject */
+    /** @var LoggerInterface|MockObject */
     private $loggerMock;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->filesystemMock = $this->getMockBuilder(Filesystem::class)
             ->disableOriginalConstructor()
@@ -166,7 +165,6 @@ class ProcessTest extends TestCase
         $this->assertEquals('/var/www/magento2/pub/media/catalog/product1.jpg', $result[0]->getPathname());
         $this->assertEquals('/var/www/magento2/pub/media/catalog/product2.jpg', $result[1]->getPathname());
         $this->assertCount(2, $result);
-        $this->assertInternalType(IsType::TYPE_ARRAY, $result);
     }
 
     /**
@@ -222,7 +220,6 @@ class ProcessTest extends TestCase
         $result = $this->process->clear($finderMock);
 
         $this->assertEquals(3, $result);
-        $this->assertInternalType(IsType::TYPE_INT, $result);
     }
 
     /**
@@ -319,6 +316,5 @@ class ProcessTest extends TestCase
         $this->assertArrayHasKey('error_images', $result);
         $this->assertEquals(3, $result['converted_images']);
         $this->assertEquals(1, $result['error_images']);
-        $this->assertInternalType(IsType::TYPE_ARRAY, $result);
     }
 }

@@ -8,9 +8,8 @@
 namespace Greenrivers\Webp\Test\Unit\Helper;
 
 use Magento\Framework\App\Config\ScopeConfigInterface;
-use PHPUnit\Framework\Constraint\IsType;
 use PHPUnit\Framework\TestCase;
-use PHPUnit_Framework_MockObject_MockObject;
+use PHPUnit\Framework\MockObject\MockObject;
 use Greenrivers\Webp\Helper\Config;
 use Greenrivers\Webp\Test\Unit\Traits\TraitObjectManager;
 
@@ -21,10 +20,10 @@ class ConfigTest extends TestCase
     /** @var Config */
     private $config;
 
-    /** @var ScopeConfigInterface|PHPUnit_Framework_MockObject_MockObject */
+    /** @var ScopeConfigInterface|MockObject */
     private $scopeConfigMock;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->scopeConfigMock = $this->getMockBuilder(ScopeConfigInterface::class)
             ->disableOriginalConstructor()
@@ -54,13 +53,12 @@ class ConfigTest extends TestCase
     public function testGetAlgorithmConfig()
     {
         $value = 'webp';
-        $this->scopeConfigMock->expects(self::exactly(2))
+        $this->scopeConfigMock->expects(self::once())
             ->method('getValue')
             ->with('webp/settings/algorithm', 'store')
             ->willReturn($value);
 
         $this->assertEquals($value, $this->config->getAlgorithmConfig());
-        $this->assertInternalType(IsType::TYPE_STRING, $this->config->getAlgorithmConfig());
     }
 
     /**
@@ -69,13 +67,12 @@ class ConfigTest extends TestCase
     public function testGetQualityConfig()
     {
         $value = 75;
-        $this->scopeConfigMock->expects(self::exactly(2))
+        $this->scopeConfigMock->expects(self::once())
             ->method('getValue')
             ->with('webp/settings/quality', 'store')
             ->willReturn($value);
 
         $this->assertEquals($value, $this->config->getQualityConfig());
-        $this->assertInternalType(IsType::TYPE_INT, $this->config->getQualityConfig());
     }
 
     /**
@@ -97,14 +94,13 @@ class ConfigTest extends TestCase
     public function testGetConversionFoldersConfig()
     {
         $value = 'catalog,product,customer';
-        $this->scopeConfigMock->expects(self::exactly(3))
+        $this->scopeConfigMock->expects(self::exactly(2))
             ->method('getValue')
             ->with('webp/conversion/folders', 'store')
             ->willReturn($value);
 
         $this->assertEquals(['catalog', 'product', 'customer'], $this->config->getConversionFoldersConfig());
         $this->assertCount(3, $this->config->getConversionFoldersConfig());
-        $this->assertInternalType(IsType::TYPE_ARRAY, $this->config->getConversionFoldersConfig());
     }
 
     /**
@@ -113,14 +109,13 @@ class ConfigTest extends TestCase
     public function testGetConversionImageFormatsConfig()
     {
         $value = '*.jpg,*.jpeg,*.png';
-        $this->scopeConfigMock->expects(self::exactly(3))
+        $this->scopeConfigMock->expects(self::exactly(2))
             ->method('getValue')
             ->with('webp/conversion/image_formats', 'store')
             ->willReturn($value);
 
         $this->assertEquals(['*.jpg', '*.jpeg', '*.png'], $this->config->getConversionImageFormatsConfig());
         $this->assertCount(3, $this->config->getConversionImageFormatsConfig());
-        $this->assertInternalType(IsType::TYPE_ARRAY, $this->config->getConversionImageFormatsConfig());
     }
 
     /**
@@ -129,14 +124,13 @@ class ConfigTest extends TestCase
     public function testGetCronFoldersConfig()
     {
         $value = 'wysiwyg,thumbnail';
-        $this->scopeConfigMock->expects(self::exactly(3))
+        $this->scopeConfigMock->expects(self::exactly(2))
             ->method('getValue')
             ->with('webp/cron/folders', 'store')
             ->willReturn($value);
 
         $this->assertEquals(['wysiwyg', 'thumbnail'], $this->config->getCronFoldersConfig());
         $this->assertCount(2, $this->config->getCronFoldersConfig());
-        $this->assertInternalType(IsType::TYPE_ARRAY, $this->config->getCronFoldersConfig());
     }
 
     /**
@@ -158,13 +152,12 @@ class ConfigTest extends TestCase
     public function testGetCronFrequencyConfig()
     {
         $value = 'W';
-        $this->scopeConfigMock->expects(self::exactly(2))
+        $this->scopeConfigMock->expects(self::once())
             ->method('getValue')
             ->with('webp/cron/frequency', 'store')
             ->willReturn($value);
 
         $this->assertEquals($value, $this->config->getCronFrequencyConfig());
-        $this->assertInternalType(IsType::TYPE_STRING, $this->config->getCronFrequencyConfig());
     }
 
     /**
@@ -173,13 +166,12 @@ class ConfigTest extends TestCase
     public function testGetCronTimeConfig()
     {
         $value = '12,24,36';
-        $this->scopeConfigMock->expects(self::exactly(2))
+        $this->scopeConfigMock->expects(self::once())
             ->method('getValue')
             ->with('webp/cron/time', 'store')
             ->willReturn($value);
 
         $this->assertEquals($value, $this->config->getCronTimeConfig());
-        $this->assertInternalType(IsType::TYPE_STRING, $this->config->getCronTimeConfig());
     }
 
     /**
@@ -188,13 +180,12 @@ class ConfigTest extends TestCase
     public function testGetCronImageFormatsConfig()
     {
         $value = '*.jpg,*.png';
-        $this->scopeConfigMock->expects(self::exactly(3))
+        $this->scopeConfigMock->expects(self::exactly(2))
             ->method('getValue')
             ->with('webp/cron/image_formats', 'store')
             ->willReturn($value);
 
         $this->assertEquals(['*.jpg', '*.png'], $this->config->getCronImageFormatsConfig());
         $this->assertCount(2, $this->config->getCronImageFormatsConfig());
-        $this->assertInternalType(IsType::TYPE_ARRAY, $this->config->getCronImageFormatsConfig());
     }
 }

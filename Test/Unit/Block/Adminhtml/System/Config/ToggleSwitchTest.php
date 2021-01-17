@@ -8,9 +8,8 @@
 namespace Greenrivers\Webp\Test\Unit\Block\Adminhtml\System\Config;
 
 use Magento\Framework\Data\Form\Element\AbstractElement;
-use PHPUnit\Framework\Constraint\IsType;
 use PHPUnit\Framework\TestCase;
-use PHPUnit_Framework_MockObject_MockObject;
+use PHPUnit\Framework\MockObject\MockObject;
 use Greenrivers\Webp\Block\Adminhtml\System\Config\ToggleSwitch;
 use Greenrivers\Webp\Helper\Config;
 use Greenrivers\Webp\Test\Unit\Traits\TraitObjectManager;
@@ -24,13 +23,13 @@ class ToggleSwitchTest extends TestCase
     /** @var ToggleSwitch */
     private $toggleSwitch;
 
-    /** @var Config|PHPUnit_Framework_MockObject_MockObject */
+    /** @var Config|MockObject */
     private $configMock;
 
-    /** @var AbstractElement|PHPUnit_Framework_MockObject_MockObject */
+    /** @var AbstractElement|MockObject */
     private $elementMock;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->configMock = $this->getMockBuilder(Config::class)
             ->disableOriginalConstructor()
@@ -51,13 +50,13 @@ class ToggleSwitchTest extends TestCase
      */
     public function testGetComponent()
     {
-        $this->elementMock->expects(self::exactly(4))
+        $this->elementMock->expects(self::exactly(3))
             ->method('getHtmlId')
             ->willReturn('webp_conversion_convert_product_images');
-        $this->elementMock->expects(self::exactly(4))
+        $this->elementMock->expects(self::exactly(3))
             ->method('getName')
             ->willReturn('groups[conversion][fields][convert_product_images][value]');
-        $this->configMock->expects(self::exactly(4))
+        $this->configMock->expects(self::exactly(3))
             ->method('getConvertProductImagesConfig')
             ->willReturn(true);
 
@@ -73,6 +72,5 @@ class ToggleSwitchTest extends TestCase
         );
         $this->assertCount(3, $this->toggleSwitch->getComponent());
         $this->assertArrayHasKey('value', $this->toggleSwitch->getComponent());
-        $this->assertInternalType(IsType::TYPE_ARRAY, $this->toggleSwitch->getComponent());
     }
 }

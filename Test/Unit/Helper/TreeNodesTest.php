@@ -10,7 +10,7 @@ namespace Greenrivers\Webp\Test\Unit\Helper;
 use Magento\Framework\App\Filesystem\DirectoryList;
 use Magento\Framework\Filesystem\Driver\File;
 use PHPUnit\Framework\TestCase;
-use PHPUnit_Framework_MockObject_MockObject;
+use PHPUnit\Framework\MockObject\MockObject;
 use Psr\Log\LoggerInterface;
 use Greenrivers\Webp\Helper\TreeNodes;
 use Greenrivers\Webp\Test\Unit\Traits\TraitObjectManager;
@@ -24,16 +24,16 @@ class TreeNodesTest extends TestCase
     /** @var TreeNodes */
     private $treeNodes;
 
-    /** @var DirectoryList|PHPUnit_Framework_MockObject_MockObject */
+    /** @var DirectoryList|MockObject */
     private $directoryListMock;
 
-    /** @var File|PHPUnit_Framework_MockObject_MockObject */
+    /** @var File|MockObject */
     private $driverFileMock;
 
-    /** @var LoggerInterface|PHPUnit_Framework_MockObject_MockObject */
+    /** @var LoggerInterface|MockObject */
     private $loggerMock;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->directoryListMock = $this->getMockBuilder(DirectoryList::class)
             ->disableOriginalConstructor()
