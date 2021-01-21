@@ -9,7 +9,7 @@
         }
     ],
     "require": {
-        "php": "~7.1.3||~7.2.0",
+        "php": ">=7.1.3",
         "jcupitt/vips" : "~1.0.5"
     },
     "type": "magento2-module",

@@ -45,6 +45,10 @@ Magento2 module for images conversion to webp format.
     
     Add `extension=vips.so` to **php.ini** file.
 
+    ```php
+    composer req jcupitt/vips 
+    ```
+
 3. Module
 
     ```shell    
@@ -108,6 +112,8 @@ Upload images in **Images And Videos** tab.
 Update changes by click on **Save** button.
 
 All images assigned to product should be converted.
+
+Due to caching images sometimes requires to save product again for convert all images.
 
 ## Sources
 
