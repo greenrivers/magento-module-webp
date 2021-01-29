@@ -52,7 +52,7 @@ Magento2 module for images conversion to webp format.
 3. Module
 
     ```shell    
-    php bin/magento module:enable greenrivers/webp
+    php bin/magento module:enable Greenrivers_Webp
     
     php bin/magento setup:upgrade
     
