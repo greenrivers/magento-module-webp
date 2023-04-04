@@ -25,31 +25,37 @@ define([
                 'theme': 'default',
                 'dots': false,
                 'icons': true
+            },
+            'checkbox': {
+                'tie_selection' : false,
+                'whole_node' : false
             }
         }
     });
 
     $('#folder-tree')
         .on('loaded.jstree', (event, data) => {
-            treeInstance = data.inst;
+            treeInstance = data.instance ? data.instance : data.inst;
             treeInstance.open_node($('#root'));
         })
         .on('check_node.jstree uncheck_node.jstree', (event, data) => {
-            const {inst} = data;
-            const {id} = data.rslt.obj.data().node;
+            const treeInstance = data.instance ? data.instance : data.inst;
+            const {id} = data.rslt ? data.rslt.obj.data().node : data.node;
             const {type} = event;
 
             const folders = registry.get(`index = ${index}`);
             let nodes = folders.value();
 
             let escapeId = id.replaceAll('/', '\\/');
-            const parent = inst._get_parent($('#' + escapeId));
-            let parentId = parent !== -1 ? parent.prop('id') : 'root';
+            const parent = data.instance ? treeInstance.get_parent($('#' + escapeId)) :
+                treeInstance._get_parent($('#' + escapeId));
+            let parentId = !['root', -1, '#'].includes(parent) ? parent.prop('id') : 'root';
             const escapeParentId = parentId.replaceAll('/', '\\/');
 
             if (type === 'check_node') {
-                let children = inst._get_children(`#${escapeParentId}`);
-                const isAll = children.toArray().every(child => inst.is_checked(child));
+                let children = data.instance ? treeInstance.get_children_dom(`#${escapeParentId}`) :
+                    treeInstance._get_children(`#${escapeParentId}`);
+                const isAll = children.toArray().every(child => treeInstance.is_checked(child));
 
                 if (isAll) {
                     children.toArray().forEach(el => {
@@ -77,15 +83,16 @@ define([
                 nodes = _.without(nodes, parentId, id);
                 while (parentId !== 'root') {
                     escapeId = parentId.replaceAll('/', '\\/');
-                    parentId = inst._get_parent($('#' + escapeId))
-                        .prop('id');
+                    parentId = data.instance ? treeInstance.get_parent($('#' + escapeId)).prop('id') :
+                        treeInstance._get_parent($('#' + escapeId)).prop('id');
                     nodes = _.without(nodes, parentId);
                 }
             }
 
-            const ids = inst.get_checked()
-                .toArray()
-                .map(value => value.id);
+            const ids = data.instance ? treeInstance.get_checked() :
+                treeInstance.get_checked()
+                    .toArray()
+                    .map(value => value.id);
 
             nodes = ids.includes('root') ? ['root'] : _.union(nodes.concat(ids));
             registry.get(`index = ${index}`).value(nodes);

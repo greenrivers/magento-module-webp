@@ -15,6 +15,7 @@ use Psr\Log\LoggerInterface;
 class TreeNodes
 {
     const ROOT_ID = 'root';
+    const HASH_ID = '#';
     const GREENRIVERS_DIR = 'greenrivers';
 
     /** @var DirectoryList */
@@ -49,7 +50,7 @@ class TreeNodes
 
         try {
             $path = $this->directoryList->getPath(DirectoryList::MEDIA);
-            if ($nodeId !== self::ROOT_ID) {
+            if (!in_array($nodeId, [self::ROOT_ID, self::HASH_ID])) {
                 $path .= DIRECTORY_SEPARATOR . $nodeId;
             }
             $paths = $this->driverFile->readDirectory($path);

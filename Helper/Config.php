@@ -83,7 +83,7 @@ class Config extends AbstractHelper
     public function getConversionFoldersConfig(): array
     {
         $folders = $this->scopeConfig->getValue(self::XML_CONVERSION_FOLDERS_CONFIG_PATH, ScopeInterface::SCOPE_STORE);
-        return explode(',', $folders);
+        return explode(',', $folders ?? '');
     }
 
     /**
@@ -92,7 +92,7 @@ class Config extends AbstractHelper
     public function getConversionImageFormatsConfig(): array
     {
         $formats = $this->scopeConfig->getValue(self::XML_CONVERSION_IMAGE_FORMATS_CONFIG_PATH, ScopeInterface::SCOPE_STORE);
-        return explode(',', $formats);
+        return explode(',', $formats ?? '');
     }
 
     /**
@@ -101,7 +101,7 @@ class Config extends AbstractHelper
     public function getCronFoldersConfig(): array
     {
         $folders = $this->scopeConfig->getValue(self::XML_CRON_FOLDERS_CONFIG_PATH, ScopeInterface::SCOPE_STORE);
-        return explode(',', $folders);
+        return explode(',', $folders ?? '');
     }
 
     /**
@@ -134,7 +134,7 @@ class Config extends AbstractHelper
     public function getCronImageFormatsConfig(): array
     {
         $formats = $this->scopeConfig->getValue(self::XML_CRON_IMAGE_FORMATS_CONFIG_PATH, ScopeInterface::SCOPE_STORE);
-        return explode(',', $formats);
+        return explode(',', $formats ?? '');
     }
 
     /**
